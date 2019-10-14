@@ -1,0 +1,7 @@
+{
+  "name": "moms-belief-admin",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "MohitBabbar1219 <mohitbabbar1219@gmail.com>",
+  "license": "MIT"
+}
