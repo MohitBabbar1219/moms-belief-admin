@@ -11,13 +11,16 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.use('/public', express.static(path.join(__dirname, 'src/public')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.use(passport.initialize());
 require('./src/services/passport')(passport);
 
 const users = require('./src/routes/users');
 app.use('/api/users', users);
+
+const home = require('./src/routes/home');
+app.use('/api/home', home);
 
 const db = require('./src/config/keys').mongoURI;
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
