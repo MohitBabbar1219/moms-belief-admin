@@ -2,13 +2,22 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
+
 const upload = require('./src/helpers/file_upload');
 
 const app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
 app.use('/public', express.static(path.join(__dirname, 'src/public')));
+
+app.use(passport.initialize());
+require('./src/services/passport')(passport);
+
+const users = require('./src/routes/users');
+app.use('/api/users', users);
 
 const db = require('./src/config/keys').mongoURI;
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
