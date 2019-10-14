@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const upload = require('./src/helpers/file_upload');
 
 const app = express();
 
@@ -14,6 +15,9 @@ mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
 
 const PORT = process.env.PORT || 4000;
 
-app.post('/hello', (req, res) => res.json({msg: req.body.data.msg}));
+app.post('/hello', upload.single('testimonialImage'), (req, res) => {
+  console.log(req.file);
+  res.json({msg: req.body.msg});
+});
 
 app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
