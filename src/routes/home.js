@@ -6,6 +6,7 @@ const upload = require('./../helpers/file_upload');
 const Testimonial = require('./../models/testimonial');
 const News = require('./../models/news');
 const Sponsor = require('./../models/sponsor');
+const MediaMention = require('./../models/media_mention');
 
 router.post('/testimonials', upload.single('testimonialImage'), passport.authenticate('jwt', {session: false}), async (req, res) => {
   const newTestimonial = new Testimonial({
@@ -149,7 +150,7 @@ router.get('/sponsors', async (req, res) => {
   }
 
   res.status(200).json({
-    message: `${sponsors.length} news articles found`,
+    message: `${sponsors.length} media mentions found`,
     data: sponsors
   });
 });
@@ -180,6 +181,64 @@ router.delete('/sponsors/:id', passport.authenticate('jwt', {session: false}), a
   res.status(200).json({
     message: `sponsor deleted`,
     data: sponsor
+  });
+});
+
+
+router.post('/media_mentions', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
+  const newMediaMention = new MediaMention({
+    image: req.file.path,
+    text: req.body.text,
+  });
+
+  const mediaMention = await newMediaMention.save();
+
+  if (!mediaMention) {
+    return res.status(400).json({message: "failed"});
+  }
+
+  res.status(201).json({message: "successful"});
+});
+
+router.get('/media_mentions', async (req, res) => {
+  const mediaMentions = await MediaMention.find({});
+
+  if (mediaMentions.length === 0) {
+    return res.status(404).json({message: "no media mentions found"});
+  }
+
+  res.status(200).json({
+    message: `${mediaMentions.length} media mentions found`,
+    data: mediaMentions
+  });
+});
+
+router.get('/media_mentions/:id', async (req, res) => {
+  let mediaMention;
+  try {
+    mediaMention = await MediaMention.findById(req.params.id)
+  } catch (e) {
+  }
+  if (!mediaMention) {
+    return res.status(404).json({message: "not found"});
+  }
+
+  res.status(200).json({
+    message: "found",
+    data: mediaMention
+  });
+});
+
+router.delete('/media_mentions/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
+  const mediaMention = await MediaMention.findByIdAndRemove(req.params.id);
+
+  if (!mediaMention) {
+    return res.status(404).json({message: "no media mention found"});
+  }
+
+  res.status(200).json({
+    message: `media mention deleted`,
+    data: mediaMention
   });
 });
 
