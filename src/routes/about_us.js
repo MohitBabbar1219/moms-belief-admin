@@ -7,6 +7,7 @@ const MainBanner = require('./../models/main_banner');
 const IntroText = require('./../models/intro_text');
 const AdvisoryBoardMember = require('./../models/advisory_board_members');
 const ClinicalConsultant = require('./../models/clinical_consultant');
+const ClinicalExpert = require('./../models/clinical_expert');
 
 router.post('/main_banner', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
   const newMainBanner = new MainBanner({
@@ -133,7 +134,7 @@ router.get('/advisory_board_members', async (req, res) => {
 
   res.status(200).json({
     message: `${advisoryBoardMembers.length} found`,
-    data: advisoryBoardMembers[advisoryBoardMembers.length - 1]
+    data: advisoryBoardMembers
   });
 });
 
@@ -190,7 +191,7 @@ router.get('/clinical_consultants', async (req, res) => {
 
   res.status(200).json({
     message: `${clinicalConsultants.length} found`,
-    data: clinicalConsultants[clinicalConsultants.length - 1]
+    data: clinicalConsultants
   });
 });
 
@@ -220,6 +221,64 @@ router.delete('/clinical_consultants/:id', passport.authenticate('jwt', {session
   res.status(200).json({
     message: `deleted`,
     data: clinicalConsultant
+  });
+});
+
+
+router.post('/clinical_experts', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
+  const newClinicalExpert = new ClinicalExpert({
+    image: req.file.path,
+    name: req.body.name,
+    designation: req.body.designation,
+    link: req.body.link,
+    about: req.body.about,
+  });
+  const clinicalExpert = await newClinicalExpert.save();
+  if (!clinicalExpert) {
+    return res.status(400).json({message: "failed"});
+  }
+  res.status(201).json({message: "successful"});
+});
+
+router.get('/clinical_experts', async (req, res) => {
+  const clinicalExperts = await ClinicalExpert.find({});
+
+  if (clinicalExperts.length === 0) {
+    return res.status(404).json({message: "not found"});
+  }
+
+  res.status(200).json({
+    message: `${clinicalExperts.length} found`,
+    data: clinicalExperts
+  });
+});
+
+router.get('/clinical_experts/:id', async (req, res) => {
+  let clinicalExpert;
+  try {
+    clinicalExpert = await ClinicalExpert.findById(req.params.id)
+  } catch (e) {
+  }
+  if (!clinicalExpert) {
+    return res.status(404).json({message: "not found"});
+  }
+
+  res.status(200).json({
+    message: "found",
+    data: clinicalExpert
+  });
+});
+
+router.delete('/clinical_experts/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
+  const clinicalExpert = await ClinicalExpert.findByIdAndRemove(req.params.id);
+
+  if (!clinicalExpert) {
+    return res.status(404).json({message: "not found"});
+  }
+
+  res.status(200).json({
+    message: `deleted`,
+    data: clinicalExpert
   });
 });
 
