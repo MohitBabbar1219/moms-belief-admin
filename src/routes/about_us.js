@@ -6,6 +6,7 @@ const upload = require('./../helpers/file_upload');
 const MainBanner = require('./../models/main_banner');
 const IntroText = require('./../models/intro_text');
 const AdvisoryBoardMember = require('./../models/advisory_board_members');
+const ClinicalConsultant = require('./../models/clinical_consultant');
 
 router.post('/main_banner', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
   const newMainBanner = new MainBanner({
@@ -162,6 +163,63 @@ router.delete('/advisory_board_members/:id', passport.authenticate('jwt', {sessi
   res.status(200).json({
     message: `deleted`,
     data: advisoryBoardMember
+  });
+});
+
+
+router.post('/clinical_consultants', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
+  const newClinicalConsultant = new ClinicalConsultant({
+    image: req.file.path,
+    name: req.body.name,
+    designation: req.body.designation,
+    about: req.body.about,
+  });
+  const clinicalConsultant = await newClinicalConsultant.save();
+  if (!clinicalConsultant) {
+    return res.status(400).json({message: "failed"});
+  }
+  res.status(201).json({message: "successful"});
+});
+
+router.get('/clinical_consultants', async (req, res) => {
+  const clinicalConsultants = await ClinicalConsultant.find({});
+
+  if (clinicalConsultants.length === 0) {
+    return res.status(404).json({message: "not found"});
+  }
+
+  res.status(200).json({
+    message: `${clinicalConsultants.length} found`,
+    data: clinicalConsultants[clinicalConsultants.length - 1]
+  });
+});
+
+router.get('/clinical_consultants/:id', async (req, res) => {
+  let clinicalConsultant;
+  try {
+    clinicalConsultant = await ClinicalConsultant.findById(req.params.id)
+  } catch (e) {
+  }
+  if (!clinicalConsultant) {
+    return res.status(404).json({message: "not found"});
+  }
+
+  res.status(200).json({
+    message: "found",
+    data: clinicalConsultant
+  });
+});
+
+router.delete('/clinical_consultants/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
+  const clinicalConsultant = await ClinicalConsultant.findByIdAndRemove(req.params.id);
+
+  if (!clinicalConsultant) {
+    return res.status(404).json({message: "not found"});
+  }
+
+  res.status(200).json({
+    message: `deleted`,
+    data: clinicalConsultant
   });
 });
 
