@@ -8,6 +8,7 @@ const IntroText = require('./../models/intro_text');
 const AdvisoryBoardMember = require('./../models/advisory_board_members');
 const ClinicalConsultant = require('./../models/clinical_consultant');
 const ClinicalExpert = require('./../models/clinical_expert');
+const ManagementTeamMember = require('./../models/management_team_member');
 
 router.post('/main_banner', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
   const newMainBanner = new MainBanner({
@@ -279,6 +280,63 @@ router.delete('/clinical_experts/:id', passport.authenticate('jwt', {session: fa
   res.status(200).json({
     message: `deleted`,
     data: clinicalExpert
+  });
+});
+
+
+router.post('/management_team_members', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
+  const newManagementTeamMember = new ManagementTeamMember({
+    image: req.file.path,
+    name: req.body.name,
+    designation: req.body.designation,
+    about: req.body.about,
+  });
+  const managementTeamMember = await newManagementTeamMember.save();
+  if (!managementTeamMember) {
+    return res.status(400).json({message: "failed"});
+  }
+  res.status(201).json({message: "successful"});
+});
+
+router.get('/management_team_members', async (req, res) => {
+  const managementTeamMembers = await ManagementTeamMember.find({});
+
+  if (managementTeamMembers.length === 0) {
+    return res.status(404).json({message: "not found"});
+  }
+
+  res.status(200).json({
+    message: `${managementTeamMembers.length} found`,
+    data: managementTeamMembers
+  });
+});
+
+router.get('/management_team_members/:id', async (req, res) => {
+  let managementTeamMember;
+  try {
+    managementTeamMember = await ManagementTeamMember.findById(req.params.id)
+  } catch (e) {
+  }
+  if (!managementTeamMember) {
+    return res.status(404).json({message: "not found"});
+  }
+
+  res.status(200).json({
+    message: "found",
+    data: managementTeamMember
+  });
+});
+
+router.delete('/management_team_members/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
+  const managementTeamMember = await ManagementTeamMember.findByIdAndRemove(req.params.id);
+
+  if (!managementTeamMember) {
+    return res.status(404).json({message: "not found"});
+  }
+
+  res.status(200).json({
+    message: `deleted`,
+    data: managementTeamMember
   });
 });
 
