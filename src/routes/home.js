@@ -5,6 +5,7 @@ const passport = require('passport');
 const upload = require('./../helpers/file_upload');
 const Testimonial = require('./../models/testimonial');
 const News = require('./../models/news');
+const Sponsor = require('./../models/sponsor');
 
 router.post('/testimonials', upload.single('testimonialImage'), passport.authenticate('jwt', {session: false}), async (req, res) => {
   const newTestimonial = new Testimonial({
@@ -51,7 +52,7 @@ router.get('/testimonials', async (req, res) => {
   });
 });
 
-router.delete('/testimonials/:id', async (req, res) => {
+router.delete('/testimonials/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
   const testimonial = await Testimonial.findByIdAndRemove(req.params.id);
 
   if (!testimonial) {
@@ -111,7 +112,7 @@ router.get('/news', async (req, res) => {
   });
 });
 
-router.delete('/news/:id', async (req, res) => {
+router.delete('/news/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
   const news = await News.findByIdAndRemove(req.params.id);
 
   if (!news) {
@@ -121,6 +122,64 @@ router.delete('/news/:id', async (req, res) => {
   res.status(200).json({
     message: `news article deleted`,
     data: news
+  });
+});
+
+
+router.post('/sponsors', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
+  const newSponsor = new Sponsor({
+    image: req.file.path,
+    name: req.body.name,
+  });
+
+  const sponsor = await newSponsor.save();
+
+  if (!sponsor) {
+    return res.status(400).json({message: "failed"});
+  }
+
+  res.status(201).json({message: "successful"});
+});
+
+router.get('/sponsors', async (req, res) => {
+  const sponsors = await Sponsor.find({});
+
+  if (sponsors.length === 0) {
+    return res.status(404).json({message: "no sponsors articles found"});
+  }
+
+  res.status(200).json({
+    message: `${sponsors.length} news articles found`,
+    data: sponsors
+  });
+});
+
+router.get('/sponsors/:id', async (req, res) => {
+  let sponsor;
+  try {
+    sponsor = await Sponsor.findById(req.params.id)
+  } catch (e) {
+  }
+  if (!sponsor) {
+    return res.status(404).json({message: "not found"});
+  }
+
+  res.status(200).json({
+    message: "found",
+    data: sponsor
+  });
+});
+
+router.delete('/sponsors/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
+  const sponsor = await Sponsor.findByIdAndRemove(req.params.id);
+
+  if (!sponsor) {
+    return res.status(404).json({message: "no sponsor found"});
+  }
+
+  res.status(200).json({
+    message: `sponsor deleted`,
+    data: sponsor
   });
 });
 
