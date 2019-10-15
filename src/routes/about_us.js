@@ -5,6 +5,7 @@ const passport = require('passport');
 const upload = require('./../helpers/file_upload');
 const MainBanner = require('./../models/main_banner');
 const IntroText = require('./../models/intro_text');
+const AdvisoryBoardMember = require('./../models/advisory_board_members');
 
 router.post('/main_banner', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
   const newMainBanner = new MainBanner({
@@ -105,6 +106,62 @@ router.delete('/intro_texts/:id', passport.authenticate('jwt', {session: false})
   res.status(200).json({
     message: `intro text deleted`,
     data: introText
+  });
+});
+
+
+router.post('/advisory_board_members', passport.authenticate('jwt', {session: false}), async (req, res) => {
+  const newAdvisoryBoardMember = new AdvisoryBoardMember({
+    name: req.body.name,
+    designation: req.body.designation,
+    about: req.body.about,
+  });
+  const advisoryBoardMember = await newAdvisoryBoardMember.save();
+  if (!advisoryBoardMember) {
+    return res.status(400).json({message: "failed"});
+  }
+  res.status(201).json({message: "successful"});
+});
+
+router.get('/advisory_board_members', async (req, res) => {
+  const advisoryBoardMembers = await AdvisoryBoardMember.find({});
+
+  if (advisoryBoardMembers.length === 0) {
+    return res.status(404).json({message: "not found"});
+  }
+
+  res.status(200).json({
+    message: `${advisoryBoardMembers.length} found`,
+    data: advisoryBoardMembers[advisoryBoardMembers.length - 1]
+  });
+});
+
+router.get('/advisory_board_members/:id', async (req, res) => {
+  let advisoryBoardMember;
+  try {
+    advisoryBoardMember = await AdvisoryBoardMember.findById(req.params.id)
+  } catch (e) {
+  }
+  if (!advisoryBoardMember) {
+    return res.status(404).json({message: "not found"});
+  }
+
+  res.status(200).json({
+    message: "found",
+    data: advisoryBoardMember
+  });
+});
+
+router.delete('/advisory_board_members/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
+  const advisoryBoardMember = await AdvisoryBoardMember.findByIdAndRemove(req.params.id);
+
+  if (!advisoryBoardMember) {
+    return res.status(404).json({message: "not found"});
+  }
+
+  res.status(200).json({
+    message: `deleted`,
+    data: advisoryBoardMember
   });
 });
 
