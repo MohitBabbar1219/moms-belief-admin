@@ -22,6 +22,9 @@ app.use('/api/users', users);
 const home = require('./src/routes/home');
 app.use('/api/home', home);
 
+const aboutUs = require('./src/routes/about_us');
+app.use('/api/about_us', aboutUs);
+
 const db = require('./src/config/keys').mongoURI;
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => console.log('successfully connected to database...'))
