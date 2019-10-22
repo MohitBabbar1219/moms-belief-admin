@@ -25,6 +25,9 @@ app.use('/api/home', home);
 const aboutUs = require('./src/routes/about_us');
 app.use('/api/about_us', aboutUs);
 
+const center = require('./src/routes/center');
+app.use('/api', center);
+
 const db = require('./src/config/keys').mongoURI;
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => console.log('successfully connected to database...'))
@@ -32,8 +35,8 @@ mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
 
 const PORT = process.env.PORT || 4000;
 
-app.post('/hello', upload.single('testimonialImage'), (req, res) => {
-  console.log(req.file);
+app.post('/hello', upload.array('centers', 4), (req, res) => {
+  console.log(req.files);
   res.json({msg: req.body.msg});
 });
 
