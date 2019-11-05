@@ -113,7 +113,8 @@ router.delete('/intro_texts/:id', passport.authenticate('jwt', {session: false})
 });
 
 
-router.post('/advisory_board_members', passport.authenticate('jwt', {session: false}), async (req, res) => {
+router.post('/advisoryBoardMembers', passport.authenticate('jwt', {session: false}), async (req, res) => {
+  console.log(req.body);
   const newAdvisoryBoardMember = new AdvisoryBoardMember({
     name: req.body.name,
     designation: req.body.designation,
@@ -126,12 +127,8 @@ router.post('/advisory_board_members', passport.authenticate('jwt', {session: fa
   res.status(201).json({message: "successful"});
 });
 
-router.get('/advisory_board_members', async (req, res) => {
+router.get('/advisoryBoardMembers', async (req, res) => {
   const advisoryBoardMembers = await AdvisoryBoardMember.find({});
-
-  if (advisoryBoardMembers.length === 0) {
-    return res.status(404).json({message: "not found"});
-  }
 
   res.status(200).json({
     message: `${advisoryBoardMembers.length} found`,
@@ -139,7 +136,7 @@ router.get('/advisory_board_members', async (req, res) => {
   });
 });
 
-router.get('/advisory_board_members/:id', async (req, res) => {
+router.get('/advisoryBoardMembers/:id', async (req, res) => {
   let advisoryBoardMember;
   try {
     advisoryBoardMember = await AdvisoryBoardMember.findById(req.params.id)
@@ -155,7 +152,28 @@ router.get('/advisory_board_members/:id', async (req, res) => {
   });
 });
 
-router.delete('/advisory_board_members/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
+router.put('/advisoryBoardMembers/:id', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
+  let updatedAdvisoryBoardMembers;
+  // console.log(req.file);
+  // return;
+  try {
+    console.log(req.file);
+    const updatedData = req.file ? {...req.body, image: req.file.path} : {...req.body};
+    updatedAdvisoryBoardMembers = await AdvisoryBoardMember.findByIdAndUpdate(req.params.id, updatedData, {new: true});
+  } catch (e) {
+    console.log(e)
+  }
+  if (!updatedAdvisoryBoardMembers) {
+    return res.status(404).json({message: "not found"});
+  }
+
+  res.status(200).json({
+    message: "found",
+    data: updatedAdvisoryBoardMembers
+  });
+});
+
+router.delete('/advisoryBoardMembers/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
   const advisoryBoardMember = await AdvisoryBoardMember.findByIdAndRemove(req.params.id);
 
   if (!advisoryBoardMember) {
@@ -169,7 +187,7 @@ router.delete('/advisory_board_members/:id', passport.authenticate('jwt', {sessi
 });
 
 
-router.post('/clinical_consultants', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
+router.post('/clinicalConsultants', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
   const newClinicalConsultant = new ClinicalConsultant({
     image: req.file.path,
     name: req.body.name,
@@ -183,12 +201,8 @@ router.post('/clinical_consultants', upload.single('image'), passport.authentica
   res.status(201).json({message: "successful"});
 });
 
-router.get('/clinical_consultants', async (req, res) => {
+router.get('/clinicalConsultants', async (req, res) => {
   const clinicalConsultants = await ClinicalConsultant.find({});
-
-  if (clinicalConsultants.length === 0) {
-    return res.status(404).json({message: "not found"});
-  }
 
   res.status(200).json({
     message: `${clinicalConsultants.length} found`,
@@ -196,7 +210,7 @@ router.get('/clinical_consultants', async (req, res) => {
   });
 });
 
-router.get('/clinical_consultants/:id', async (req, res) => {
+router.get('/clinicalConsultants/:id', async (req, res) => {
   let clinicalConsultant;
   try {
     clinicalConsultant = await ClinicalConsultant.findById(req.params.id)
@@ -212,7 +226,28 @@ router.get('/clinical_consultants/:id', async (req, res) => {
   });
 });
 
-router.delete('/clinical_consultants/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
+router.put('/clinicalConsultants/:id', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
+  let updatedClinicalConsultant;
+  // console.log(req.file);
+  // return;
+  try {
+    console.log(req.file);
+    const updatedData = req.file ? {...req.body, image: req.file.path} : {...req.body};
+    updatedClinicalConsultant = await ClinicalConsultant.findByIdAndUpdate(req.params.id, updatedData, {new: true});
+  } catch (e) {
+    console.log(e)
+  }
+  if (!updatedClinicalConsultant) {
+    return res.status(404).json({message: "not found"});
+  }
+
+  res.status(200).json({
+    message: "found",
+    data: updatedClinicalConsultant
+  });
+});
+
+router.delete('/clinicalConsultants/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
   const clinicalConsultant = await ClinicalConsultant.findByIdAndRemove(req.params.id);
 
   if (!clinicalConsultant) {
@@ -226,7 +261,7 @@ router.delete('/clinical_consultants/:id', passport.authenticate('jwt', {session
 });
 
 
-router.post('/clinical_experts', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
+router.post('/clinicalExperts', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
   const newClinicalExpert = new ClinicalExpert({
     image: req.file.path,
     name: req.body.name,
@@ -241,12 +276,8 @@ router.post('/clinical_experts', upload.single('image'), passport.authenticate('
   res.status(201).json({message: "successful"});
 });
 
-router.get('/clinical_experts', async (req, res) => {
+router.get('/clinicalExperts', async (req, res) => {
   const clinicalExperts = await ClinicalExpert.find({});
-
-  if (clinicalExperts.length === 0) {
-    return res.status(404).json({message: "not found"});
-  }
 
   res.status(200).json({
     message: `${clinicalExperts.length} found`,
@@ -254,7 +285,7 @@ router.get('/clinical_experts', async (req, res) => {
   });
 });
 
-router.get('/clinical_experts/:id', async (req, res) => {
+router.get('/clinicalExperts/:id', async (req, res) => {
   let clinicalExpert;
   try {
     clinicalExpert = await ClinicalExpert.findById(req.params.id)
@@ -270,7 +301,28 @@ router.get('/clinical_experts/:id', async (req, res) => {
   });
 });
 
-router.delete('/clinical_experts/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
+router.put('/clinicalExperts/:id', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
+  let clinicalExpert;
+  // console.log(req.file);
+  // return;
+  try {
+    console.log(req.file);
+    const updatedData = req.file ? {...req.body, image: req.file.path} : {...req.body};
+    clinicalExpert = await ClinicalExpert.findByIdAndUpdate(req.params.id, updatedData, {new: true});
+  } catch (e) {
+    console.log(e)
+  }
+  if (!clinicalExpert) {
+    return res.status(404).json({message: "not found"});
+  }
+
+  res.status(200).json({
+    message: "found",
+    data: clinicalExpert
+  });
+});
+
+router.delete('/clinicalExperts/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
   const clinicalExpert = await ClinicalExpert.findByIdAndRemove(req.params.id);
 
   if (!clinicalExpert) {
@@ -284,7 +336,7 @@ router.delete('/clinical_experts/:id', passport.authenticate('jwt', {session: fa
 });
 
 
-router.post('/management_team_members', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
+router.post('/managementTeamMembers', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
   const newManagementTeamMember = new ManagementTeamMember({
     image: req.file.path,
     name: req.body.name,
@@ -298,12 +350,8 @@ router.post('/management_team_members', upload.single('image'), passport.authent
   res.status(201).json({message: "successful"});
 });
 
-router.get('/management_team_members', async (req, res) => {
+router.get('/managementTeamMembers', async (req, res) => {
   const managementTeamMembers = await ManagementTeamMember.find({});
-
-  if (managementTeamMembers.length === 0) {
-    return res.status(404).json({message: "not found"});
-  }
 
   res.status(200).json({
     message: `${managementTeamMembers.length} found`,
@@ -311,7 +359,7 @@ router.get('/management_team_members', async (req, res) => {
   });
 });
 
-router.get('/management_team_members/:id', async (req, res) => {
+router.get('/managementTeamMembers/:id', async (req, res) => {
   let managementTeamMember;
   try {
     managementTeamMember = await ManagementTeamMember.findById(req.params.id)
@@ -327,7 +375,26 @@ router.get('/management_team_members/:id', async (req, res) => {
   });
 });
 
-router.delete('/management_team_members/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
+router.put('/managementTeamMembers/:id', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
+  let managementTeamMember;
+  try {
+    console.log(req.file);
+    const updatedData = req.file ? {...req.body, image: req.file.path} : {...req.body};
+    managementTeamMember = await ManagementTeamMember.findByIdAndUpdate(req.params.id, updatedData, {new: true});
+  } catch (e) {
+    console.log(e)
+  }
+  if (!managementTeamMember) {
+    return res.status(404).json({message: "not found"});
+  }
+
+  res.status(200).json({
+    message: "found",
+    data: managementTeamMember
+  });
+});
+
+router.delete('/managementTeamMembers/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
   const managementTeamMember = await ManagementTeamMember.findByIdAndRemove(req.params.id);
 
   if (!managementTeamMember) {

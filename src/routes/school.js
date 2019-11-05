@@ -21,11 +21,6 @@ router.post('/schools', upload.single('image'), passport.authenticate('jwt', {se
 
 router.get('/schools', async (req, res) => {
   const subscription = await School.find({});
-
-  if (subscription.length === 0) {
-    return res.status(404).json({message: "not found"});
-  }
-
   res.status(200).json({
     message: `${subscription.length} found`,
     data: subscription
@@ -48,6 +43,25 @@ router.get('/schools/:id', async (req, res) => {
   });
 });
 
+router.put('/schools/:id', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
+  let school;
+  try {
+    console.log(req.file);
+    const updatedData = req.file ? {...req.body, image: req.file.path} : {...req.body};
+    school = await School.findByIdAndUpdate(req.params.id, updatedData, {new: true});
+  } catch (e) {
+    console.log(e)
+  }
+  if (!school) {
+    return res.status(404).json({message: "not found"});
+  }
+
+  res.status(200).json({
+    message: "found",
+    data: school
+  });
+});
+
 router.delete('/schools/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
   const subscription = await School.findByIdAndRemove(req.params.id);
 
@@ -62,7 +76,7 @@ router.delete('/schools/:id', passport.authenticate('jwt', {session: false}), as
 });
 
 
-router.post('/city_center_counts', passport.authenticate('jwt', {session: false}), async (req, res) => {
+router.post('/cityCenterCounts', passport.authenticate('jwt', {session: false}), async (req, res) => {
   const newSubscription = new CityCenterCount({
     city: req.body.city,
     count: req.body.count,
@@ -74,12 +88,8 @@ router.post('/city_center_counts', passport.authenticate('jwt', {session: false}
   res.status(201).json({message: "successful"});
 });
 
-router.get('/city_center_counts', async (req, res) => {
+router.get('/cityCenterCounts', async (req, res) => {
   const subscription = await CityCenterCount.find({});
-
-  if (subscription.length === 0) {
-    return res.status(404).json({message: "not found"});
-  }
 
   res.status(200).json({
     message: `${subscription.length} found`,
@@ -87,7 +97,7 @@ router.get('/city_center_counts', async (req, res) => {
   });
 });
 
-router.get('/city_center_counts/:id', async (req, res) => {
+router.get('/cityCenterCounts/:id', async (req, res) => {
   let subscription;
   try {
     subscription = await CityCenterCount.findById(req.params.id)
@@ -103,9 +113,27 @@ router.get('/city_center_counts/:id', async (req, res) => {
   });
 });
 
-router.delete('/city_center_counts/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
-  const subscription = await CityCenterCount.findByIdAndRemove(req.params.id);
+router.put('/cityCenterCounts/:id', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
+  let cityCenterCount;
+  try {
+    console.log(req.file);
+    const updatedData = req.file ? {...req.body, image: req.file.path} : {...req.body};
+    cityCenterCount = await CityCenterCount.findByIdAndUpdate(req.params.id, updatedData, {new: true});
+  } catch (e) {
+    console.log(e)
+  }
+  if (!cityCenterCount) {
+    return res.status(404).json({message: "not found"});
+  }
 
+  res.status(200).json({
+    message: "found",
+    data: cityCenterCount
+  });
+});
+
+router.delete('/cityCenterCounts/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
+  const subscription = await CityCenterCount.findByIdAndRemove(req.params.id);
   if (!subscription) {
     return res.status(404).json({message: "not found"});
   }

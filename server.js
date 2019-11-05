@@ -22,11 +22,17 @@ app.use('/api/users', users);
 const home = require('./src/routes/home');
 app.use('/api/home', home);
 
+const homeBasedProgram = require('./src/routes/home_based_program');
+app.use('/api/homeBasedProgram', homeBasedProgram);
+
 const aboutUs = require('./src/routes/about_us');
-app.use('/api/about_us', aboutUs);
+app.use('/api/aboutUs', aboutUs);
+
+const school = require('./src/routes/school');
+app.use('/api/schools', school);
 
 const center = require('./src/routes/center');
-app.use('/api', center);
+app.use('/api/centers', center);
 
 const db = require('./src/config/keys').mongoURI;
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
@@ -35,9 +41,8 @@ mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
 
 const PORT = process.env.PORT || 4000;
 
-app.post('/hello', upload.array('centers', 4), (req, res) => {
-  console.log(req.files);
-  res.json({msg: req.body.msg});
+app.get('/hello', (req, res) => {
+  res.json({msg: "hello"});
 });
 
 app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));

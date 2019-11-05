@@ -66,10 +66,18 @@ const centerSchema = new Schema({
       required: true
     },
   }],
-  images: [{
+  doctorImage: {
     type: String,
     required: true
-  }],
+  },
+  imageOne: {
+    type: String,
+    required: true
+  },
+  imageTwo: {
+    type: String,
+    required: true
+  },
   isFeatured: {
     type: Boolean,
     required: true
