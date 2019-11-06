@@ -3,10 +3,13 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const cors = require('cors');
 
 const upload = require('./helpers/fileUpload');
 
 const app = express();
+
+app.use(cors());
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
