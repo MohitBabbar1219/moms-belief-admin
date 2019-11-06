@@ -2,9 +2,9 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 
-const upload = require('./../helpers/file_upload');
-const School = require('./../models/school');
-const CityCenterCount = require('./../models/city_center_count');
+const upload = require('../helpers/fileUpload');
+const School = require('../models/school');
+const CityCenterCount = require('../models/cityCenterCount');
 
 router.post('/schools', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
   const newSubscription = new School({

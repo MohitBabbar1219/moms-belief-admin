@@ -2,8 +2,8 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 
-const upload = require('./../helpers/file_upload');
-const Center = require('./../models/center');
+const upload = require('../helpers/fileUpload');
+const Center = require('../models/center');
 
 router.post('/', upload.array('images', 4), async (req, res) => {
   console.log(req.files);

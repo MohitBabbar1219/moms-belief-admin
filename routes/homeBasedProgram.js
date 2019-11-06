@@ -2,9 +2,9 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 
-const upload = require('./../helpers/file_upload');
-const HomeSubscription = require('./../models/home_subscription');
-const ProgramAssistance = require('./../models/program_assistance');
+const upload = require('../helpers/fileUpload');
+const HomeSubscription = require('../models/homeSubscription');
+const ProgramAssistance = require('../models/programAssistance');
 
 router.post('/subscriptions', passport.authenticate('jwt', {session: false}), async (req, res) => {
   const newSubscription = new HomeSubscription({

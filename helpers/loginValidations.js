@@ -1,6 +1,6 @@
 const Validator = require('validator');
 
-const { isEmpty } = require('./general_functions');
+const { isEmpty } = require('./generalFunctions');
 
 const validateLoginInputs = (data) => {
   let errors = {};

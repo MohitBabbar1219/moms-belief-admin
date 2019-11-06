@@ -3,10 +3,10 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 
-const validateRegisterInput = require('./../helpers/register_validations');
-const validateLoginInput = require('./../helpers/login_validations');
-const User = require('./../models/user');
-const {secret} = require('./../config/keys');
+const validateRegisterInput = require('../helpers/registerValidations');
+const validateLoginInput = require('../helpers/loginValidations');
+const User = require('../models/user');
+const {secret} = require('../config/keys');
 
 router.post('/register', async (req, res) => {
   const {errors, isValid} = validateRegisterInput(req.body);

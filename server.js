@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
 
-const upload = require('./src/helpers/file_upload');
+const upload = require('./helpers/fileUpload');
 
 const app = express();
 
@@ -14,27 +14,27 @@ app.use(bodyParser.json());
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.use(passport.initialize());
-require('./src/services/passport')(passport);
+require('./services/passport')(passport);
 
-const users = require('./src/routes/users');
+const users = require('./routes/users');
 app.use('/api/users', users);
 
-const home = require('./src/routes/home');
+const home = require('./routes/home');
 app.use('/api/home', home);
 
-const homeBasedProgram = require('./src/routes/home_based_program');
+const homeBasedProgram = require('./routes/homeBasedProgram');
 app.use('/api/homeBasedProgram', homeBasedProgram);
 
-const aboutUs = require('./src/routes/about_us');
+const aboutUs = require('./routes/aboutUs');
 app.use('/api/aboutUs', aboutUs);
 
-const school = require('./src/routes/school');
+const school = require('./routes/school');
 app.use('/api/schools', school);
 
-const center = require('./src/routes/center');
+const center = require('./routes/center');
 app.use('/api/centers', center);
 
-const db = require('./src/config/keys').mongoURI;
+const db = require('./config/keys').mongoURI;
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => console.log('successfully connected to database...'))
   .catch((err) => console.log('error occurred while connecting to database', err));

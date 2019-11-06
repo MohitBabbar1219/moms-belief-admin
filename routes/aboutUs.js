@@ -2,13 +2,13 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 
-const upload = require('./../helpers/file_upload');
-const MainBanner = require('./../models/main_banner');
-const IntroText = require('./../models/intro_text');
-const AdvisoryBoardMember = require('./../models/advisory_board_members');
-const ClinicalConsultant = require('./../models/clinical_consultant');
-const ClinicalExpert = require('./../models/clinical_expert');
-const ManagementTeamMember = require('./../models/management_team_member');
+const upload = require('../helpers/fileUpload');
+const MainBanner = require('../models/mainBanner');
+const IntroText = require('../models/introText');
+const AdvisoryBoardMember = require('../models/advisoryBoardMembers');
+const ClinicalConsultant = require('../models/clinicalConsultant');
+const ClinicalExpert = require('../models/clinicalExpert');
+const ManagementTeamMember = require('../models/managementTeamMember');
 
 router.post('/main_banner', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
   const newMainBanner = new MainBanner({

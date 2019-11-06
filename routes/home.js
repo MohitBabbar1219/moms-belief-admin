@@ -2,11 +2,11 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 
-const upload = require('./../helpers/file_upload');
-const Testimonial = require('./../models/testimonial');
-const News = require('./../models/news');
-const Sponsor = require('./../models/sponsor');
-const MediaMention = require('./../models/media_mention');
+const upload = require('../helpers/fileUpload');
+const Testimonial = require('../models/testimonial');
+const News = require('../models/news');
+const Sponsor = require('../models/sponsor');
+const MediaMention = require('../models/mediaMention');
 
 router.post('/testimonials', upload.single('image'), passport.authenticate('jwt', {session: false}), async (req, res) => {
   const newTestimonial = new Testimonial({
