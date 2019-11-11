@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Button, Col, Container, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import React, {Component} from 'react';
+import {Button, Col, Container, Input, InputGroup, InputGroupAddon, InputGroupText, Row} from 'reactstrap';
 
 class Page500 extends Component {
   render() {
@@ -19,7 +19,7 @@ class Page500 extends Component {
                     <i className="fa fa-search"></i>
                   </InputGroupText>
                 </InputGroupAddon>
-                <Input size="16" type="text" placeholder="What are you looking for?" />
+                <Input size="16" type="text" placeholder="What are you looking for?"/>
                 <InputGroupAddon addonType="append">
                   <Button color="info">Search</Button>
                 </InputGroupAddon>

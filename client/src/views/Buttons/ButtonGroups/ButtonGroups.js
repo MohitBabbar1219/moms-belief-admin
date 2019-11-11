@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   Button,
   ButtonDropdown,
@@ -30,7 +30,9 @@ class ButtonGroups extends Component {
   }
 
   toggle(i) {
-    const newArray = this.state.dropdownOpen.map((element, index) => { return (index === i ? !element : false); });
+    const newArray = this.state.dropdownOpen.map((element, index) => {
+      return (index === i ? !element : false);
+    });
     this.setState({
       dropdownOpen: newArray,
     });
@@ -45,7 +47,8 @@ class ButtonGroups extends Component {
               <CardHeader>
                 <i className="fa fa-align-justify"></i><strong>Button Group</strong>
                 <div className="card-header-actions">
-                  <a href="https://reactstrap.github.io/components/button-group/" rel="noreferrer noopener" target="_blank" className="card-header-action">
+                  <a href="https://reactstrap.github.io/components/button-group/" rel="noreferrer noopener"
+                     target="_blank" className="card-header-action">
                     <small className="text-muted">docs</small>
                   </a>
                 </div>
@@ -66,7 +69,9 @@ class ButtonGroups extends Component {
                 <ButtonGroup vertical>
                   <Button>1</Button>
                   <Button>2</Button>
-                  <ButtonDropdown isOpen={this.state.dropdownOpen[0]} toggle={() => { this.toggle(0); }}>
+                  <ButtonDropdown isOpen={this.state.dropdownOpen[0]} toggle={() => {
+                    this.toggle(0);
+                  }}>
                     <DropdownToggle caret>
                       Dropdown
                     </DropdownToggle>
@@ -113,13 +118,13 @@ class ButtonGroups extends Component {
                   <Button>Middle</Button>
                   <Button>Right</Button>
                 </ButtonGroup>
-                <hr />
+                <hr/>
                 <ButtonGroup>
                   <Button>Left</Button>
                   <Button>Middle</Button>
                   <Button>Right</Button>
                 </ButtonGroup>
-                <hr />
+                <hr/>
                 <ButtonGroup size="sm">
                   <Button>Left</Button>
                   <Button>Middle</Button>
@@ -135,7 +140,9 @@ class ButtonGroups extends Component {
                 <ButtonGroup>
                   <Button>1</Button>
                   <Button>2</Button>
-                  <ButtonDropdown isOpen={this.state.dropdownOpen[1]} toggle={() => { this.toggle(1); }}>
+                  <ButtonDropdown isOpen={this.state.dropdownOpen[1]} toggle={() => {
+                    this.toggle(1);
+                  }}>
                     <DropdownToggle caret>
                       Dropdown
                     </DropdownToggle>
@@ -165,7 +172,7 @@ class ButtonGroups extends Component {
                   </ButtonGroup>
                   <InputGroup>
                     <InputGroupAddon addonType="prepend"><InputGroupText>@</InputGroupText></InputGroupAddon>
-                    <Input placeholder="Input group example" />
+                    <Input placeholder="Input group example"/>
                   </InputGroup>
                 </ButtonToolbar>
                 <ButtonToolbar className="justify-content-between">
@@ -177,7 +184,7 @@ class ButtonGroups extends Component {
                   </ButtonGroup>
                   <InputGroup>
                     <InputGroupAddon addonType="prepend"><InputGroupText>@</InputGroupText></InputGroupAddon>
-                    <Input placeholder="Input group example" />
+                    <Input placeholder="Input group example"/>
                   </InputGroup>
                 </ButtonToolbar>
               </CardBody>

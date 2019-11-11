@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Button, Card, CardBody, CardHeader, Tooltip, UncontrolledTooltip } from 'reactstrap';
+import React, {Component} from 'react';
+import {Button, Card, CardBody, CardHeader, Tooltip, UncontrolledTooltip} from 'reactstrap';
 
 class TooltipItem extends React.Component {
   constructor(props) {
@@ -23,7 +23,8 @@ class TooltipItem extends React.Component {
         <Button className="mr-1" color="secondary" id={'Tooltip-' + this.props.id}>
           {this.props.item.text}
         </Button>
-        <Tooltip placement={this.props.item.placement} isOpen={this.state.tooltipOpen} target={'Tooltip-' + this.props.id} toggle={this.toggle}>
+        <Tooltip placement={this.props.item.placement} isOpen={this.state.tooltipOpen}
+                 target={'Tooltip-' + this.props.id} toggle={this.toggle}>
           Tooltip Content!
         </Tooltip>
       </span>
@@ -76,7 +77,8 @@ class Tooltips extends Component {
           <CardHeader>
             <i className="fa fa-align-justify"></i><strong>Tooltips</strong>
             <div className="card-header-actions">
-              <a href="https://reactstrap.github.io/components/tooltips/" rel="noreferrer noopener" target="_blank" className="card-header-action">
+              <a href="https://reactstrap.github.io/components/tooltips/" rel="noreferrer noopener" target="_blank"
+                 className="card-header-action">
                 <small className="text-muted">docs</small>
               </a>
             </div>
@@ -84,7 +86,9 @@ class Tooltips extends Component {
           <CardBody>
             {/*eslint-disable-next-line*/}
             <p>Somewhere in here is a <a href="#" id="TooltipExample">tooltip</a>.</p>
-            <Tooltip placement="right" isOpen={this.state.tooltipOpen[0]} target="TooltipExample" toggle={() => {this.toggle(0);}}>
+            <Tooltip placement="right" isOpen={this.state.tooltipOpen[0]} target="TooltipExample" toggle={() => {
+              this.toggle(0);
+            }}>
               Hello world!
             </Tooltip>
           </CardBody>
@@ -96,8 +100,13 @@ class Tooltips extends Component {
           </CardHeader>
           <CardBody>
             {/*eslint-disable-next-line*/}
-            <p>Sometimes you need to allow users to select text within a <a href="#" id="DisabledAutoHideExample">tooltip</a>.</p>
-            <Tooltip placement="top" isOpen={this.state.tooltipOpen[1]} autohide={false} target="DisabledAutoHideExample" toggle={() => {this.toggle(1);}}>
+            <p>Sometimes you need to allow users to select text within a <a href="#"
+                                                                            id="DisabledAutoHideExample">tooltip</a>.
+            </p>
+            <Tooltip placement="top" isOpen={this.state.tooltipOpen[1]} autohide={false}
+                     target="DisabledAutoHideExample" toggle={() => {
+              this.toggle(1);
+            }}>
               Try to select this text!
             </Tooltip>
           </CardBody>
@@ -109,7 +118,7 @@ class Tooltips extends Component {
           </CardHeader>
           <CardBody>
             {this.state.tooltips.map((tooltip, i) => {
-              return <TooltipItem key={i} item={tooltip} id={i} />;
+              return <TooltipItem key={i} item={tooltip} id={i}/>;
             })}
           </CardBody>
         </Card>

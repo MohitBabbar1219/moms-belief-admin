@@ -1,17 +1,7 @@
-import React, { Component } from 'react';
-import { Badge, Card, CardBody, CardFooter, CardHeader, Col, Row, Collapse, Fade } from 'reactstrap';
-import { AppSwitch } from '@coreui/react'
+import React, {Component} from 'react';
+import {Row} from 'reactstrap';
 import axios from "axios";
 import Aux from './../../../hoc/Aux';
-import Testimonial from "../../../components/Testimonial";
-import TestimonialForm from "../../../components/TestimonialForm";
-import ButtonWithIcon from "../../../components/ButtonWithIcon";
-import ClinicalConsultantForm from "../../../components/ClinicalConsultantForm";
-import ClinicalConsultantCard from "../../../components/ClinicalConsultantCard";
-import ClinicalExpertCard from "../../../components/ClinicalExpertCard";
-import ClinicalExpertForm from "../../../components/ClinicalExpertForm";
-import ManagementTeamMemberForm from "../../../components/ManagementTeamMemberForm";
-import ManagementTeamMemberCard from "../../../components/ManagementTeamMemberCard";
 import HomeBasedSubscriptionForm from "../../../components/HomeBasedSubscriptionForm";
 import HomeBasedSubscriptionCard from "../../../components/HomeBasedSubscriptionCard";
 
@@ -33,11 +23,13 @@ class HomeSubscriptionCards extends Component {
   }
 
   toggle() {
-    this.setState({ collapse: !this.state.collapse });
+    this.setState({collapse: !this.state.collapse});
   }
 
   toggleFade() {
-    this.setState((prevState) => { return { fadeIn: !prevState }});
+    this.setState((prevState) => {
+      return {fadeIn: !prevState}
+    });
   }
 
   edit = (type, index) => {
@@ -209,14 +201,14 @@ class HomeSubscriptionCards extends Component {
       {this.state.subscriptions.map((clinicalConsultant, index) => {
         return this.state.editableElement === clinicalConsultant ?
           <HomeBasedSubscriptionForm addImage={(evt) => this.addImage(evt, "subscriptions", index)}
-                           cancelEditing={this.cancelEditing}
-                           onInputChange={this.onInputChange}
-                           updateElement={this.updateElement}
-                                    subscription={this.state.elementBeingEdited}/> :
+                                     cancelEditing={this.cancelEditing}
+                                     onInputChange={this.onInputChange}
+                                     updateElement={this.updateElement}
+                                     subscription={this.state.elementBeingEdited}/> :
           <HomeBasedSubscriptionCard edit={() => this.edit("subscriptions", index)}
-                       key={clinicalConsultant._id}
-                       delete={() => this.delete("subscriptions", clinicalConsultant._id)}
-                                    subscription={clinicalConsultant}/>
+                                     key={clinicalConsultant._id}
+                                     delete={() => this.delete("subscriptions", clinicalConsultant._id)}
+                                     subscription={clinicalConsultant}/>
       })}
     </Aux>;
     return (

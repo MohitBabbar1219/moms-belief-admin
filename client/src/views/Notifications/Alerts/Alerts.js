@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Alert, Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
+import React, {Component} from 'react';
+import {Alert, Card, CardBody, CardHeader, Col, Row} from 'reactstrap';
 
 class Alerts extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class Alerts extends Component {
   }
 
   onDismiss() {
-    this.setState({ visible: false });
+    this.setState({visible: false});
   }
 
   render() {
@@ -25,7 +25,8 @@ class Alerts extends Component {
               <CardHeader>
                 <i className="fa fa-align-justify"></i><strong>Alerts</strong>
                 <div className="card-header-actions">
-                  <a href="https://reactstrap.github.io/components/alerts/" rel="noreferrer noopener" target="_blank" className="card-header-action">
+                  <a href="https://reactstrap.github.io/components/alerts/" rel="noreferrer noopener" target="_blank"
+                     className="card-header-action">
                     <small className="text-muted">docs</small>
                   </a>
                 </div>
@@ -67,35 +68,43 @@ class Alerts extends Component {
               <CardBody>
                 <Alert color="primary">
                   {/*eslint-disable-next-line*/}
-                  This is a primary alert with <a href="#" className="alert-link">an example link</a>. Give it a click if you like.
+                  This is a primary alert with <a href="#" className="alert-link">an example link</a>. Give it a click
+                  if you like.
                 </Alert>
                 <Alert color="secondary">
                   {/*eslint-disable-next-line*/}
-                  This is a secondary alert with <a href="#" className="alert-link">an example link</a>. Give it a click if you like.
+                  This is a secondary alert with <a href="#" className="alert-link">an example link</a>. Give it a click
+                  if you like.
                 </Alert>
                 <Alert color="success">
                   {/*eslint-disable-next-line*/}
-                  This is a success alert with <a href="#" className="alert-link">an example link</a>. Give it a click if you like.
+                  This is a success alert with <a href="#" className="alert-link">an example link</a>. Give it a click
+                  if you like.
                 </Alert>
                 <Alert color="danger">
                   {/*eslint-disable-next-line*/}
-                  This is a danger alert with <a href="#" className="alert-link">an example link</a>. Give it a click if you like.
+                  This is a danger alert with <a href="#" className="alert-link">an example link</a>. Give it a click if
+                  you like.
                 </Alert>
                 <Alert color="warning">
                   {/*eslint-disable-next-line*/}
-                  This is a warning alert with <a href="#" className="alert-link">an example link</a>. Give it a click if you like.
+                  This is a warning alert with <a href="#" className="alert-link">an example link</a>. Give it a click
+                  if you like.
                 </Alert>
                 <Alert color="info">
                   {/*eslint-disable-next-line*/}
-                  This is a info alert with <a href="#" className="alert-link">an example link</a>. Give it a click if you like.
+                  This is a info alert with <a href="#" className="alert-link">an example link</a>. Give it a click if
+                  you like.
                 </Alert>
                 <Alert color="light">
                   {/*eslint-disable-next-line*/}
-                  This is a light alert with <a href="#" className="alert-link">an example link</a>. Give it a click if you like.
+                  This is a light alert with <a href="#" className="alert-link">an example link</a>. Give it a click if
+                  you like.
                 </Alert>
                 <Alert color="dark">
                   {/*eslint-disable-next-line*/}
-                  This is a dark alert with <a href="#" className="alert-link">an example link</a>. Give it a click if you like.
+                  This is a dark alert with <a href="#" className="alert-link">an example link</a>. Give it a click if
+                  you like.
                 </Alert>
               </CardBody>
             </Card>
@@ -116,7 +125,7 @@ class Alerts extends Component {
                     to run a bit longer so that you can see how spacing within an alert works with this kind
                     of content.
                   </p>
-                  <hr />
+                  <hr/>
                   <p className="mb-0">
                     Whenever you need to, be sure to use margin utilities to keep things nice and tidy.
                   </p>

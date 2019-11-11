@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
-import { Badge, Card, CardBody, CardFooter, CardHeader, Col, Row, Collapse, Fade } from 'reactstrap';
-import { AppSwitch } from '@coreui/react'
+import React, {Component} from 'react';
+import {Row} from 'reactstrap';
 import axios from "axios";
 import Aux from './../../../hoc/Aux';
 import Testimonial from "../../../components/Testimonial";
 import TestimonialForm from "../../../components/TestimonialForm";
-import ButtonWithIcon from "../../../components/ButtonWithIcon";
 
 class TestimonialCards extends Component {
   constructor(props) {
@@ -25,11 +23,13 @@ class TestimonialCards extends Component {
   }
 
   toggle() {
-    this.setState({ collapse: !this.state.collapse });
+    this.setState({collapse: !this.state.collapse});
   }
 
   toggleFade() {
-    this.setState((prevState) => { return { fadeIn: !prevState }});
+    this.setState((prevState) => {
+      return {fadeIn: !prevState}
+    });
   }
 
   edit = (type, index) => {

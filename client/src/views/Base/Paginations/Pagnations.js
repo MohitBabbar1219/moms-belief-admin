@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Card, CardBody, CardHeader, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import React, {Component} from 'react';
+import {Card, CardBody, CardHeader, Pagination, PaginationItem, PaginationLink} from 'reactstrap';
 
 class Paginations extends Component {
 
@@ -10,7 +10,8 @@ class Paginations extends Component {
           <CardHeader>
             <i className="fa fa-align-justify"></i><strong>Pagination</strong>
             <div className="card-header-actions">
-              <a href="https://reactstrap.github.io/components/pagination/" rel="noreferrer noopener" target="_blank" className="card-header-action">
+              <a href="https://reactstrap.github.io/components/pagination/" rel="noreferrer noopener" target="_blank"
+                 className="card-header-action">
                 <small className="text-muted">docs</small>
               </a>
             </div>
@@ -18,7 +19,7 @@ class Paginations extends Component {
           <CardBody>
             <Pagination>
               <PaginationItem>
-                <PaginationLink previous tag="button" />
+                <PaginationLink previous tag="button"/>
               </PaginationItem>
               <PaginationItem>
                 <PaginationLink tag="button">
@@ -46,7 +47,7 @@ class Paginations extends Component {
                 </PaginationLink>
               </PaginationItem>
               <PaginationItem>
-                <PaginationLink next tag="button" />
+                <PaginationLink next tag="button"/>
               </PaginationItem>
             </Pagination>
           </CardBody>
@@ -59,7 +60,7 @@ class Paginations extends Component {
           <CardBody>
             <Pagination>
               <PaginationItem disabled>
-                <PaginationLink previous tag="button" />
+                <PaginationLink previous tag="button"/>
               </PaginationItem>
               <PaginationItem active>
                 <PaginationLink tag="button">
@@ -87,7 +88,7 @@ class Paginations extends Component {
                 </PaginationLink>
               </PaginationItem>
               <PaginationItem>
-                <PaginationLink next tag="button" />
+                <PaginationLink next tag="button"/>
               </PaginationItem>
             </Pagination>
           </CardBody>
@@ -100,7 +101,7 @@ class Paginations extends Component {
           <CardBody>
             <Pagination size="lg">
               <PaginationItem>
-                <PaginationLink previous tag="button" />
+                <PaginationLink previous tag="button"/>
               </PaginationItem>
               <PaginationItem>
                 <PaginationLink tag="button">
@@ -118,12 +119,12 @@ class Paginations extends Component {
                 </PaginationLink>
               </PaginationItem>
               <PaginationItem className="d-none d-sm-block">
-                <PaginationLink next tag="button" />
+                <PaginationLink next tag="button"/>
               </PaginationItem>
             </Pagination>
             <Pagination>
               <PaginationItem>
-                <PaginationLink previous tag="button" />
+                <PaginationLink previous tag="button"/>
               </PaginationItem>
               <PaginationItem>
                 <PaginationLink tag="button">
@@ -141,12 +142,12 @@ class Paginations extends Component {
                 </PaginationLink>
               </PaginationItem>
               <PaginationItem>
-                <PaginationLink next tag="button" />
+                <PaginationLink next tag="button"/>
               </PaginationItem>
             </Pagination>
             <Pagination size="sm">
               <PaginationItem>
-                <PaginationLink previous tag="button" />
+                <PaginationLink previous tag="button"/>
               </PaginationItem>
               <PaginationItem>
                 <PaginationLink tag="button">
@@ -164,7 +165,7 @@ class Paginations extends Component {
                 </PaginationLink>
               </PaginationItem>
               <PaginationItem>
-                <PaginationLink next tag="button" />
+                <PaginationLink next tag="button"/>
               </PaginationItem>
             </Pagination>
           </CardBody>

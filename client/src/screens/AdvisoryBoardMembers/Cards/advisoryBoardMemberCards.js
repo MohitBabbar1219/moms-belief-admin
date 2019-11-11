@@ -1,13 +1,7 @@
-import React, { Component } from 'react';
-import { Badge, Card, CardBody, CardFooter, CardHeader, Col, Row, Collapse, Fade } from 'reactstrap';
-import { AppSwitch } from '@coreui/react'
+import React, {Component} from 'react';
+import {Row} from 'reactstrap';
 import axios from "axios";
 import Aux from './../../../hoc/Aux';
-import Testimonial from "../../../components/Testimonial";
-import TestimonialForm from "../../../components/TestimonialForm";
-import ButtonWithIcon from "../../../components/ButtonWithIcon";
-import MediaMentionCard from "../../../components/MediaMentionCard";
-import MediaMentionForm from "../../../components/MediaMentionForm";
 import AdvisoryBoardMemberForm from "../../../components/AdvisoryBoardMemberForm";
 import AdvisoryBoardMemberCard from "../../../components/AdvisoryBoardMemberCard";
 
@@ -29,11 +23,13 @@ class AdvisoryBoardMemberCards extends Component {
   }
 
   toggle() {
-    this.setState({ collapse: !this.state.collapse });
+    this.setState({collapse: !this.state.collapse});
   }
 
   toggleFade() {
-    this.setState((prevState) => { return { fadeIn: !prevState }});
+    this.setState((prevState) => {
+      return {fadeIn: !prevState}
+    });
   }
 
   edit = (type, index) => {
@@ -203,14 +199,14 @@ class AdvisoryBoardMemberCards extends Component {
       {this.state.advisoryBoardMembers.map((advisoryBoardMember, index) => {
         return this.state.editableElement === advisoryBoardMember ?
           <AdvisoryBoardMemberForm addImage={(evt) => this.addImage(evt, "advisoryBoardMembers", index)}
-                           cancelEditing={this.cancelEditing}
-                           onInputChange={this.onInputChange}
-                           updateElement={this.updateElement}
-                            advisoryBoardMember={this.state.elementBeingEdited}/> :
+                                   cancelEditing={this.cancelEditing}
+                                   onInputChange={this.onInputChange}
+                                   updateElement={this.updateElement}
+                                   advisoryBoardMember={this.state.elementBeingEdited}/> :
           <AdvisoryBoardMemberCard edit={() => this.edit("advisoryBoardMembers", index)}
-                       key={advisoryBoardMember._id}
-                       delete={() => this.delete("advisoryBoardMembers", advisoryBoardMember._id)}
-                            advisoryBoardMember={advisoryBoardMember}/>
+                                   key={advisoryBoardMember._id}
+                                   delete={() => this.delete("advisoryBoardMembers", advisoryBoardMember._id)}
+                                   advisoryBoardMember={advisoryBoardMember}/>
       })}
     </Aux>;
     return (

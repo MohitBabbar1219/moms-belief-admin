@@ -5,13 +5,13 @@ import {mount} from 'enzyme/build';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Collapses />, div);
+  ReactDOM.render(<Collapses/>, div);
   ReactDOM.unmountComponentAtNode(div);
 });
 
-describe('toggle clicks', function() {
+describe('toggle clicks', function () {
   it('collapse without crashing', () => {
-    const wrapper = mount(<Collapses />);
+    const wrapper = mount(<Collapses/>);
     let collapse = wrapper.find('#toggleCollapse1').at(0);
     collapse.simulate('click');
     expect(wrapper.state().collapse).toEqual(true);
@@ -22,7 +22,7 @@ describe('toggle clicks', function() {
     wrapper.unmount()
   });
   it('fade without crashing', () => {
-    const wrapper = mount(<Collapses />);
+    const wrapper = mount(<Collapses/>);
     let fade = wrapper.find('#toggleFade1').at(0);
     fade.simulate('click');
     expect(wrapper.state().fadeIn).toEqual(false);
@@ -31,7 +31,7 @@ describe('toggle clicks', function() {
     wrapper.unmount()
   });
   it('accordion without crashing', () => {
-    const wrapper = mount(<Collapses />);
+    const wrapper = mount(<Collapses/>);
     let accordion = wrapper.find('[aria-controls="collapseOne"]').at(0);
     accordion.simulate('click');
     expect(wrapper.state().accordion[0]).toEqual(false);
@@ -55,7 +55,7 @@ describe('toggle clicks', function() {
     wrapper.unmount()
   });
   it('custom without crashing', () => {
-    const wrapper = mount(<Collapses />);
+    const wrapper = mount(<Collapses/>);
     let accordion = wrapper.find('[aria-controls="exampleAccordion1"]').at(0);
     accordion.simulate('click');
     expect(wrapper.state().custom[0]).toEqual(false);

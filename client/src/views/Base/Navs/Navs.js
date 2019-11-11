@@ -1,5 +1,16 @@
-import React, { Component } from 'react';
-import { Card, CardBody, CardHeader, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem, NavLink } from 'reactstrap';
+import React, {Component} from 'react';
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  Nav,
+  NavItem,
+  NavLink
+} from 'reactstrap';
 
 class Navs extends Component {
 
@@ -28,7 +39,8 @@ class Navs extends Component {
           <CardHeader>
             <i className="fa fa-align-justify"></i><strong>Navs</strong>
             <div className="card-header-actions">
-              <a href="https://reactstrap.github.io/components/navs/" rel="noreferrer noopener" target="_blank" className="card-header-action">
+              <a href="https://reactstrap.github.io/components/navs/" rel="noreferrer noopener" target="_blank"
+                 className="card-header-action">
                 <small className="text-muted">docs</small>
               </a>
             </div>
@@ -49,11 +61,12 @@ class Navs extends Component {
                 <NavLink disabled href="#">Disabled Link</NavLink>
               </NavItem>
             </Nav>
-            <hr />
+            <hr/>
             <p>Link Based</p>
             <Nav>
-              <NavLink href="#">Link</NavLink> <NavLink href="#">Link</NavLink> <NavLink href="#">Another Link</NavLink> <NavLink disabled href="#">Disabled
-              Link</NavLink>
+              <NavLink href="#">Link</NavLink> <NavLink href="#">Link</NavLink> <NavLink href="#">Another Link</NavLink>
+              <NavLink disabled href="#">Disabled
+                Link</NavLink>
             </Nav>
           </CardBody>
         </Card>
@@ -66,7 +79,9 @@ class Navs extends Component {
               <NavItem>
                 <NavLink href="#" active>Link</NavLink>
               </NavItem>
-              <Dropdown nav isOpen={this.state.dropdownOpen[0]} toggle={() => {this.toggle(0);}}>
+              <Dropdown nav isOpen={this.state.dropdownOpen[0]} toggle={() => {
+                this.toggle(0);
+              }}>
                 <DropdownToggle nav caret>
                   Dropdown
                 </DropdownToggle>
@@ -74,7 +89,7 @@ class Navs extends Component {
                   <DropdownItem header>Header</DropdownItem>
                   <DropdownItem disabled>Action</DropdownItem>
                   <DropdownItem>Another Action</DropdownItem>
-                  <DropdownItem divider />
+                  <DropdownItem divider/>
                   <DropdownItem>Another Action</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
@@ -99,7 +114,9 @@ class Navs extends Component {
               <NavItem>
                 <NavLink href="#" active>Link</NavLink>
               </NavItem>
-              <Dropdown nav isOpen={this.state.dropdownOpen[1]} toggle={() => {this.toggle(1);}}>
+              <Dropdown nav isOpen={this.state.dropdownOpen[1]} toggle={() => {
+                this.toggle(1);
+              }}>
                 <DropdownToggle nav caret>
                   Dropdown
                 </DropdownToggle>
@@ -107,7 +124,7 @@ class Navs extends Component {
                   <DropdownItem header>Header</DropdownItem>
                   <DropdownItem disabled>Action</DropdownItem>
                   <DropdownItem>Another Action</DropdownItem>
-                  <DropdownItem divider />
+                  <DropdownItem divider/>
                   <DropdownItem>Another Action</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
@@ -143,11 +160,12 @@ class Navs extends Component {
                 <NavLink disabled href="#">Disabled Link</NavLink>
               </NavItem>
             </Nav>
-            <hr />
+            <hr/>
             <p>Link based</p>
             <Nav vertical>
-              <NavLink href="#">Link</NavLink> <NavLink href="#">Link</NavLink> <NavLink href="#">Another Link</NavLink> <NavLink disabled href="#">Disabled
-              Link</NavLink>
+              <NavLink href="#">Link</NavLink> <NavLink href="#">Link</NavLink> <NavLink href="#">Another Link</NavLink>
+              <NavLink disabled href="#">Disabled
+                Link</NavLink>
             </Nav>
           </CardBody>
         </Card>

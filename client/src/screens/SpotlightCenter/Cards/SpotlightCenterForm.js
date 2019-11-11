@@ -1,38 +1,7 @@
 import React, {Component} from 'react';
-import {
-  Badge,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Col,
-  Row,
-  Collapse,
-  Fade,
-  Form,
-  FormGroup,
-  Label, Input, Button
-} from 'reactstrap';
-import {AppSwitch} from '@coreui/react'
+import {Button, Card, CardBody, CardFooter, CardHeader, Col, Form, FormGroup, Input, Label} from 'reactstrap';
 import axios from "axios";
-import Aux from './../../../hoc/Aux';
-import Testimonial from "../../../components/Testimonial";
-import TestimonialForm from "../../../components/TestimonialForm";
-import ButtonWithIcon from "../../../components/ButtonWithIcon";
-import ClinicalConsultantForm from "../../../components/ClinicalConsultantForm";
-import ClinicalConsultantCard from "../../../components/ClinicalConsultantCard";
-import ClinicalExpertCard from "../../../components/ClinicalExpertCard";
-import ClinicalExpertForm from "../../../components/ClinicalExpertForm";
-import ManagementTeamMemberForm from "../../../components/ManagementTeamMemberForm";
-import ManagementTeamMemberCard from "../../../components/ManagementTeamMemberCard";
-import HomeBasedSubscriptionForm from "../../../components/HomeBasedSubscriptionForm";
-import HomeBasedSubscriptionCard from "../../../components/HomeBasedSubscriptionCard";
-import SchoolCard from "../../../components/SchoolCard";
-import SchoolForm from "../../../components/SchoolForm";
-import CityCenterCountForm from "../../../components/CityCenterCountForm";
-import CityCenterCountCard from "../../../components/CityCenterCountCard";
 import {withRouter} from "react-router-dom";
-import divWithClassName from "react-bootstrap/cjs/utils/divWithClassName";
 
 class SpotlightCenterForm extends Component {
   state = {
@@ -92,13 +61,27 @@ class SpotlightCenterForm extends Component {
         "__v": 0
       };
       this.setState({center: newAddress});
-      this.setState({elementBeingEdited: {...newAddress, address: {...newAddress.address}, services: [...newAddress.services], strengths: [...newAddress.strengths]}});
+      this.setState({
+        elementBeingEdited: {
+          ...newAddress,
+          address: {...newAddress.address},
+          services: [...newAddress.services],
+          strengths: [...newAddress.strengths]
+        }
+      });
       return;
     }
     axios.get(`/api/centers/${this.props.match.params.centerUrl}`).then(advisoryBoardMembers => {
       console.log(advisoryBoardMembers.data);
       this.setState({center: advisoryBoardMembers.data.data});
-      this.setState({elementBeingEdited: {...advisoryBoardMembers.data.data, address: {...advisoryBoardMembers.data.data.address}, services: [...advisoryBoardMembers.data.data.services], strengths: [...advisoryBoardMembers.data.data.strengths]}});
+      this.setState({
+        elementBeingEdited: {
+          ...advisoryBoardMembers.data.data,
+          address: {...advisoryBoardMembers.data.data.address},
+          services: [...advisoryBoardMembers.data.data.services],
+          strengths: [...advisoryBoardMembers.data.data.strengths]
+        }
+      });
     });
   };
 
@@ -241,22 +224,26 @@ class SpotlightCenterForm extends Component {
                   <div>
                     <p>Thumbnail Image</p>
                     <img src={`/${this.state.elementBeingEdited.thumbImage}`} className="w-75" alt=""/>
-                    <input type="file" name="thumbImage" className="d-inline-block mt-2 btn" onChange={(evt) => this.addImage(evt, "thumbImage", 0)}/>
+                    <input type="file" name="thumbImage" className="d-inline-block mt-2 btn"
+                           onChange={(evt) => this.addImage(evt, "thumbImage", 0)}/>
                   </div>
                   <div>
                     <p>Doctor Image</p>
                     <img src={`/${this.state.elementBeingEdited.doctorImage}`} className="w-75" alt=""/>
-                    <input type="file" name="doctorImage" className="d-inline-block mt-2 btn" onChange={(evt) => this.addImage(evt, "doctorImage", 1)}/>
+                    <input type="file" name="doctorImage" className="d-inline-block mt-2 btn"
+                           onChange={(evt) => this.addImage(evt, "doctorImage", 1)}/>
                   </div>
                   <div>
                     <p>Image One</p>
                     <img src={`/${this.state.elementBeingEdited.imageOne}`} className="w-75" alt=""/>
-                    <input type="file" name="imageOne" className="d-inline-block mt-2 btn" onChange={(evt) => this.addImage(evt, "imageOne", 2)}/>
+                    <input type="file" name="imageOne" className="d-inline-block mt-2 btn"
+                           onChange={(evt) => this.addImage(evt, "imageOne", 2)}/>
                   </div>
                   <div>
                     <p>Image Two</p>
                     <img src={`/${this.state.elementBeingEdited.imageTwo}`} className="w-75" alt=""/>
-                    <input type="file" name="imageTwo" className="d-inline-block mt-2 btn" onChange={(evt) => this.addImage(evt, "imageTwo", 3)}/>
+                    <input type="file" name="imageTwo" className="d-inline-block mt-2 btn"
+                           onChange={(evt) => this.addImage(evt, "imageTwo", 3)}/>
                   </div>
                 </div>
                 <div className="w-75">
@@ -266,7 +253,8 @@ class SpotlightCenterForm extends Component {
                       <Label htmlFor="text-input">Title</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="text" id="text-input" name="title" onChange={this.onInputChange} value={this.state.elementBeingEdited.title}/>
+                      <Input type="text" id="text-input" name="title" onChange={this.onInputChange}
+                             value={this.state.elementBeingEdited.title}/>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -274,7 +262,8 @@ class SpotlightCenterForm extends Component {
                       <Label htmlFor="text-input">Url</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="text" id="text-input" name="url" onChange={this.onInputChange} value={this.state.elementBeingEdited.url}/>
+                      <Input type="text" id="text-input" name="url" onChange={this.onInputChange}
+                             value={this.state.elementBeingEdited.url}/>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -282,7 +271,8 @@ class SpotlightCenterForm extends Component {
                       <Label htmlFor="text-input">Doctor</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="text" id="text-input" name="doctor" onChange={this.onInputChange} value={this.state.elementBeingEdited.doctor}/>
+                      <Input type="text" id="text-input" name="doctor" onChange={this.onInputChange}
+                             value={this.state.elementBeingEdited.doctor}/>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -290,7 +280,8 @@ class SpotlightCenterForm extends Component {
                       <Label htmlFor="text-input">Type</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="text" id="text-input" name="type" onChange={this.onInputChange} value={this.state.elementBeingEdited.type}/>
+                      <Input type="text" id="text-input" name="type" onChange={this.onInputChange}
+                             value={this.state.elementBeingEdited.type}/>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -298,7 +289,8 @@ class SpotlightCenterForm extends Component {
                       <Label htmlFor="textarea-input">About Doctor</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="textarea" id="textarea-input" placeholder="about doctor..."  name="aboutDoctor" rows="2" onChange={this.onInputChange} value={this.state.elementBeingEdited.aboutDoctor}/>
+                      <Input type="textarea" id="textarea-input" placeholder="about doctor..." name="aboutDoctor"
+                             rows="2" onChange={this.onInputChange} value={this.state.elementBeingEdited.aboutDoctor}/>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -306,7 +298,8 @@ class SpotlightCenterForm extends Component {
                       <Label htmlFor="textarea-input">Center Description</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="textarea" id="textarea-input" placeholder="center description..." name="description" rows="2" onChange={this.onInputChange} value={this.state.elementBeingEdited.description}/>
+                      <Input type="textarea" id="textarea-input" placeholder="center description..." name="description"
+                             rows="2" onChange={this.onInputChange} value={this.state.elementBeingEdited.description}/>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -314,7 +307,8 @@ class SpotlightCenterForm extends Component {
                       <Label htmlFor="textarea-input">About Center</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="textarea" id="textarea-input" placeholder="about center..."  name="about" rows="2" onChange={this.onInputChange} value={this.state.elementBeingEdited.about}/>
+                      <Input type="textarea" id="textarea-input" placeholder="about center..." name="about" rows="2"
+                             onChange={this.onInputChange} value={this.state.elementBeingEdited.about}/>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -323,11 +317,13 @@ class SpotlightCenterForm extends Component {
                     </Col>
                     <Col md="9">
                       <FormGroup check inline>
-                        <Input className="form-check-input" onChange={this.onInputChange} name="isFeatured" value={true} type="radio" id="inline-radio-1" />
+                        <Input className="form-check-input" onChange={this.onInputChange} name="isFeatured" value={true}
+                               type="radio" id="inline-radio-1"/>
                         <Label className="form-check-label" check htmlFor="inline-radio1">Yes</Label>
                       </FormGroup>
                       <FormGroup check inline>
-                        <Input className="form-check-input" onChange={this.onInputChange} name="isFeatured" value={false} type="radio" id="inline-radio-2" />
+                        <Input className="form-check-input" onChange={this.onInputChange} name="isFeatured"
+                               value={false} type="radio" id="inline-radio-2"/>
                         <Label className="form-check-label" check htmlFor="inline-radio2">No</Label>
                       </FormGroup>
                     </Col>
@@ -336,18 +332,22 @@ class SpotlightCenterForm extends Component {
                   <h1 className="mt-5">Strengths</h1>
                   <div>
                     {this.state.elementBeingEdited.strengths.map((strength, index) => {
-                        return <FormGroup row>
-                          <Col md="3">
-                            {/*<Label htmlFor="text-input">Doctor</Label>*/}
-                          </Col>
-                          <Col xs="12 d-flex mt-2" md="9">
-                            <Input type="text" id="text-input" name="number" placeholder="number" className="w-25" onChange={(evt) => this.onSpecialInputChange(evt, "strengths", index)} value={strength.number}/>
-                            <Input type="text" id="text-input" className="ml-3 w-75" placeholder="strength" name="strength" onChange={(evt) => this.onSpecialInputChange(evt, "strengths", index)} value={strength.strength}/>
-                          </Col>
-                        </FormGroup>
+                      return <FormGroup row>
+                        <Col md="3">
+                          {/*<Label htmlFor="text-input">Doctor</Label>*/}
+                        </Col>
+                        <Col xs="12 d-flex mt-2" md="9">
+                          <Input type="text" id="text-input" name="number" placeholder="number" className="w-25"
+                                 onChange={(evt) => this.onSpecialInputChange(evt, "strengths", index)}
+                                 value={strength.number}/>
+                          <Input type="text" id="text-input" className="ml-3 w-75" placeholder="strength"
+                                 name="strength" onChange={(evt) => this.onSpecialInputChange(evt, "strengths", index)}
+                                 value={strength.strength}/>
+                        </Col>
+                      </FormGroup>
                     })}
                     <Button size="sm" onClick={this.addNewStrength} color="primary"><i
-                      className="fa fa-plus"></i>  Add Strength</Button>
+                      className="fa fa-plus"></i> Add Strength</Button>
                   </div>
                   <h1 className="mt-5">Services</h1>
                   <div>
@@ -357,11 +357,14 @@ class SpotlightCenterForm extends Component {
                           {/*<Label htmlFor="text-input">Doctor</Label>*/}
                         </Col>
                         <Col xs="12 d-flex mt-2" md="9">
-                          <Input type="text" id="text-input" placeholder="service" name="service" onChange={(evt) => this.onSpecialInputChange(evt, "services", index)} value={strength}/>
+                          <Input type="text" id="text-input" placeholder="service" name="service"
+                                 onChange={(evt) => this.onSpecialInputChange(evt, "services", index)}
+                                 value={strength}/>
                         </Col>
                       </FormGroup>
                     })}
-                    <Button size="sm" onClick={this.addNewService} color="primary"><i className="fa fa-plus"></i>  Add Service</Button>
+                    <Button size="sm" onClick={this.addNewService} color="primary"><i className="fa fa-plus"></i> Add
+                      Service</Button>
                   </div>
                   <h1 className="mt-5">Address</h1>
                   <FormGroup row>
@@ -369,7 +372,9 @@ class SpotlightCenterForm extends Component {
                       <Label htmlFor="text-input">City</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="text" id="text-input" name="city" onChange={(evt) => this.onSpecialInputChange(evt, "address")} value={this.state.elementBeingEdited.address.city}/>
+                      <Input type="text" id="text-input" name="city"
+                             onChange={(evt) => this.onSpecialInputChange(evt, "address")}
+                             value={this.state.elementBeingEdited.address.city}/>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -377,7 +382,9 @@ class SpotlightCenterForm extends Component {
                       <Label htmlFor="text-input">Zip Code</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="text" id="text-input" name="zipCode" onChange={(evt) => this.onSpecialInputChange(evt, "address")} value={this.state.elementBeingEdited.address.zipCode}/>
+                      <Input type="text" id="text-input" name="zipCode"
+                             onChange={(evt) => this.onSpecialInputChange(evt, "address")}
+                             value={this.state.elementBeingEdited.address.zipCode}/>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -385,7 +392,9 @@ class SpotlightCenterForm extends Component {
                       <Label htmlFor="text-input">State</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="text" id="text-input" name="state" onChange={(evt) => this.onSpecialInputChange(evt, "address")} value={this.state.elementBeingEdited.address.state}/>
+                      <Input type="text" id="text-input" name="state"
+                             onChange={(evt) => this.onSpecialInputChange(evt, "address")}
+                             value={this.state.elementBeingEdited.address.state}/>
                     </Col>
                   </FormGroup>
                   <FormGroup row>
@@ -393,7 +402,9 @@ class SpotlightCenterForm extends Component {
                       <Label htmlFor="textarea-input">Display Address</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="textarea" id="textarea-input" placeholder="display address..." name="toShow" rows="2" onChange={(evt) => this.onSpecialInputChange(evt, "address")} value={this.state.elementBeingEdited.address.toShow}/>
+                      <Input type="textarea" id="textarea-input" placeholder="display address..." name="toShow" rows="2"
+                             onChange={(evt) => this.onSpecialInputChange(evt, "address")}
+                             value={this.state.elementBeingEdited.address.toShow}/>
                     </Col>
                   </FormGroup>
                 </div>

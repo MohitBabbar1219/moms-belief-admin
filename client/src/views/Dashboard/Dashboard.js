@@ -1,27 +1,7 @@
-import React, { Component, lazy, Suspense } from 'react';
-import { Bar, Line } from 'react-chartjs-2';
-import {
-  Badge,
-  Button,
-  ButtonDropdown,
-  ButtonGroup,
-  ButtonToolbar,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  Col,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  Progress,
-  Row,
-  Table,
-} from 'reactstrap';
-import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
-import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities'
+import React, {Component, lazy} from 'react';
+import {Card, CardBody, Col, Row,} from 'reactstrap';
+import {CustomTooltips} from '@coreui/coreui-plugin-chartjs-custom-tooltips';
+import {getStyle} from '@coreui/coreui/dist/js/coreui-utilities'
 
 const Widget03 = lazy(() => import('../../views/Widgets/Widget03'));
 
@@ -303,23 +283,11 @@ class Dashboard extends Component {
       <div className="animated fadeIn">
         <Row>
           <Col xs="12" sm="6" lg="3">
-            <Card className="text-white bg-info">
-              <CardBody className="pb-0">
-                <div className="text-value">9.823</div>
-                <div>Members online</div>
-              </CardBody>
-              <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
-              </div>
-            </Card>
-          </Col>
-
-          <Col xs="12" sm="6" lg="3">
             <Card className="text-white bg-primary">
               <CardBody className="pb-0">
-                <div className="text-value">9.823</div>
-                <div>Members online</div>
+                <h2>Home</h2>
               </CardBody>
-              <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
+              <div className="chart-wrapper mx-3" style={{height: '70px'}}>
               </div>
             </Card>
           </Col>
@@ -327,10 +295,9 @@ class Dashboard extends Component {
           <Col xs="12" sm="6" lg="3">
             <Card className="text-white bg-warning">
               <CardBody className="pb-0">
-                <div className="text-value">9.823</div>
-                <div>Members online</div>
+                <h2>About Us</h2>
               </CardBody>
-              <div className="chart-wrapper" style={{ height: '70px' }}>
+              <div className="chart-wrapper" style={{height: '70px'}}>
               </div>
             </Card>
           </Col>
@@ -338,10 +305,29 @@ class Dashboard extends Component {
           <Col xs="12" sm="6" lg="3">
             <Card className="text-white bg-danger">
               <CardBody className="pb-0">
-                <div className="text-value">9.823</div>
-                <div>Members online</div>
+                <h2>Home Program</h2>
               </CardBody>
-              <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
+              <div className="chart-wrapper mx-3" style={{height: '70px'}}>
+              </div>
+            </Card>
+          </Col>
+
+          <Col xs="12" sm="6" lg="3">
+            <Card className="text-white bg-danger">
+              <CardBody className="pb-0">
+                <h2>Schools</h2>
+              </CardBody>
+              <div className="chart-wrapper mx-3" style={{height: '70px'}}>
+              </div>
+            </Card>
+          </Col>
+
+          <Col xs="12" sm="6" lg="3">
+            <Card className="text-white bg-cyan">
+              <CardBody className="pb-0">
+                <h2>Centers</h2>
+              </CardBody>
+              <div className="chart-wrapper mx-3" style={{height: '70px'}}>
               </div>
             </Card>
           </Col>

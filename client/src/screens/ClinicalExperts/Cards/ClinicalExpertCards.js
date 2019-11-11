@@ -1,13 +1,7 @@
-import React, { Component } from 'react';
-import { Badge, Card, CardBody, CardFooter, CardHeader, Col, Row, Collapse, Fade } from 'reactstrap';
-import { AppSwitch } from '@coreui/react'
+import React, {Component} from 'react';
+import {Row} from 'reactstrap';
 import axios from "axios";
 import Aux from './../../../hoc/Aux';
-import Testimonial from "../../../components/Testimonial";
-import TestimonialForm from "../../../components/TestimonialForm";
-import ButtonWithIcon from "../../../components/ButtonWithIcon";
-import ClinicalConsultantForm from "../../../components/ClinicalConsultantForm";
-import ClinicalConsultantCard from "../../../components/ClinicalConsultantCard";
 import ClinicalExpertCard from "../../../components/ClinicalExpertCard";
 import ClinicalExpertForm from "../../../components/ClinicalExpertForm";
 
@@ -29,11 +23,13 @@ class ClinicalExpertCards extends Component {
   }
 
   toggle() {
-    this.setState({ collapse: !this.state.collapse });
+    this.setState({collapse: !this.state.collapse});
   }
 
   toggleFade() {
-    this.setState((prevState) => { return { fadeIn: !prevState }});
+    this.setState((prevState) => {
+      return {fadeIn: !prevState}
+    });
   }
 
   edit = (type, index) => {
@@ -199,13 +195,13 @@ class ClinicalExpertCards extends Component {
       {this.state.clinicalExperts.map((clinicalConsultant, index) => {
         return this.state.editableElement === clinicalConsultant ?
           <ClinicalExpertForm addImage={(evt) => this.addImage(evt, "clinicalExperts", index)}
-                           cancelEditing={this.cancelEditing}
-                           onInputChange={this.onInputChange}
-                           updateElement={this.updateElement}
+                              cancelEditing={this.cancelEditing}
+                              onInputChange={this.onInputChange}
+                              updateElement={this.updateElement}
                               clinicalExpert={this.state.elementBeingEdited}/> :
           <ClinicalExpertCard edit={() => this.edit("clinicalExperts", index)}
-                       key={clinicalConsultant._id}
-                       delete={() => this.delete("clinicalExperts", clinicalConsultant._id)}
+                              key={clinicalConsultant._id}
+                              delete={() => this.delete("clinicalExperts", clinicalConsultant._id)}
                               clinicalExpert={clinicalConsultant}/>
       })}
     </Aux>;

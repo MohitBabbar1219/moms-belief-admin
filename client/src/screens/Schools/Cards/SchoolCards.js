@@ -1,19 +1,7 @@
-import React, { Component } from 'react';
-import { Badge, Card, CardBody, CardFooter, CardHeader, Col, Row, Collapse, Fade } from 'reactstrap';
-import { AppSwitch } from '@coreui/react'
+import React, {Component} from 'react';
+import {Row} from 'reactstrap';
 import axios from "axios";
 import Aux from './../../../hoc/Aux';
-import Testimonial from "../../../components/Testimonial";
-import TestimonialForm from "../../../components/TestimonialForm";
-import ButtonWithIcon from "../../../components/ButtonWithIcon";
-import ClinicalConsultantForm from "../../../components/ClinicalConsultantForm";
-import ClinicalConsultantCard from "../../../components/ClinicalConsultantCard";
-import ClinicalExpertCard from "../../../components/ClinicalExpertCard";
-import ClinicalExpertForm from "../../../components/ClinicalExpertForm";
-import ManagementTeamMemberForm from "../../../components/ManagementTeamMemberForm";
-import ManagementTeamMemberCard from "../../../components/ManagementTeamMemberCard";
-import HomeBasedSubscriptionForm from "../../../components/HomeBasedSubscriptionForm";
-import HomeBasedSubscriptionCard from "../../../components/HomeBasedSubscriptionCard";
 import SchoolCard from "../../../components/SchoolCard";
 import SchoolForm from "../../../components/SchoolForm";
 
@@ -35,11 +23,13 @@ class SchoolCards extends Component {
   }
 
   toggle() {
-    this.setState({ collapse: !this.state.collapse });
+    this.setState({collapse: !this.state.collapse});
   }
 
   toggleFade() {
-    this.setState((prevState) => { return { fadeIn: !prevState }});
+    this.setState((prevState) => {
+      return {fadeIn: !prevState}
+    });
   }
 
   edit = (type, index) => {
@@ -210,14 +200,14 @@ class SchoolCards extends Component {
       {this.state.schools.map((clinicalConsultant, index) => {
         return this.state.editableElement === clinicalConsultant ?
           <SchoolForm addImage={(evt) => this.addImage(evt, "schools", index)}
-                           cancelEditing={this.cancelEditing}
-                           onInputChange={this.onInputChange}
-                           updateElement={this.updateElement}
-                                     school={this.state.elementBeingEdited}/> :
+                      cancelEditing={this.cancelEditing}
+                      onInputChange={this.onInputChange}
+                      updateElement={this.updateElement}
+                      school={this.state.elementBeingEdited}/> :
           <SchoolCard edit={() => this.edit("schools", index)}
-                       key={clinicalConsultant._id}
-                       delete={() => this.delete("schools", clinicalConsultant._id)}
-                                     school={clinicalConsultant}/>
+                      key={clinicalConsultant._id}
+                      delete={() => this.delete("schools", clinicalConsultant._id)}
+                      school={clinicalConsultant}/>
       })}
     </Aux>;
     return (

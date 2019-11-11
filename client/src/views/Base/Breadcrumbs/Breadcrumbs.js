@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
+import React, {Component} from 'react';
+import {Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Col, Row} from 'reactstrap';
 
 class Breadcrumbs extends Component {
   render() {
@@ -11,7 +11,8 @@ class Breadcrumbs extends Component {
               <CardHeader>
                 <i className="fa fa-align-justify"></i><strong>Breadcrumbs</strong>
                 <div className="card-header-actions">
-                  <a href="https://reactstrap.github.io/components/breadcrumbs/" rel="noreferrer noopener" target="_blank" className="card-header-action">
+                  <a href="https://reactstrap.github.io/components/breadcrumbs/" rel="noreferrer noopener"
+                     target="_blank" className="card-header-action">
                     <small className="text-muted">docs</small>
                   </a>
                 </div>

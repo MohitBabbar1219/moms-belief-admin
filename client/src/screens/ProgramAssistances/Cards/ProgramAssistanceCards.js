@@ -1,15 +1,7 @@
 import React, {Component} from 'react';
-import {Badge, Card, CardBody, CardFooter, CardHeader, Col, Row, Collapse, Fade} from 'reactstrap';
-import {AppSwitch} from '@coreui/react'
+import {Row} from 'reactstrap';
 import axios from "axios";
 import Aux from './../../../hoc/Aux';
-import Testimonial from "../../../components/Testimonial";
-import TestimonialForm from "../../../components/TestimonialForm";
-import ButtonWithIcon from "../../../components/ButtonWithIcon";
-import ClinicalConsultantForm from "../../../components/ClinicalConsultantForm";
-import ClinicalConsultantCard from "../../../components/ClinicalConsultantCard";
-import ClinicalExpertCard from "../../../components/ClinicalExpertCard";
-import ClinicalExpertForm from "../../../components/ClinicalExpertForm";
 import ProgramAssistanceCard from "../../../components/ProgramAssistanceCard";
 import ProgramAssistanceForm from "../../../components/ProgramAssistanceForm";
 
@@ -201,14 +193,14 @@ class ProgramAssistanceCards extends Component {
       {this.state.programAssistances.map((clinicalConsultant, index) => {
         return this.state.editableElement === clinicalConsultant ?
           <ProgramAssistanceForm addImage={(evt) => this.addImage(evt, "programAssistances", index)}
-                              cancelEditing={this.cancelEditing}
-                              onInputChange={this.onInputChange}
-                              updateElement={this.updateElement}
-                              programAssistance={this.state.elementBeingEdited}/> :
+                                 cancelEditing={this.cancelEditing}
+                                 onInputChange={this.onInputChange}
+                                 updateElement={this.updateElement}
+                                 programAssistance={this.state.elementBeingEdited}/> :
           <ProgramAssistanceCard edit={() => this.edit("programAssistances", index)}
-                              key={clinicalConsultant._id}
-                              delete={() => this.delete("programAssistances", clinicalConsultant._id)}
-                              programAssistance={clinicalConsultant}/>
+                                 key={clinicalConsultant._id}
+                                 delete={() => this.delete("programAssistances", clinicalConsultant._id)}
+                                 programAssistance={clinicalConsultant}/>
       })}
     </Aux>;
     return (

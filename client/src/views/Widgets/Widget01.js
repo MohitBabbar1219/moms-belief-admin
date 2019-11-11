@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardBody, Progress } from 'reactstrap';
+import {Card, CardBody, Progress} from 'reactstrap';
 import classNames from 'classnames';
-import { mapToCssModules } from 'reactstrap/lib/utils';
+import {mapToCssModules} from 'reactstrap/lib/utils';
 
 const propTypes = {
   header: PropTypes.string,
@@ -27,11 +27,11 @@ const defaultProps = {
 
 class Widget01 extends Component {
   render() {
-    const { className, cssModule, header, mainText, smallText, color, value, children, variant, ...attributes } = this.props;
+    const {className, cssModule, header, mainText, smallText, color, value, children, variant, ...attributes} = this.props;
 
     // demo purposes only
-    const progress = { style: '', color: color, value: value };
-    const card = { style: '', bgColor: '' };
+    const progress = {style: '', color: color, value: value};
+    const card = {style: '', bgColor: ''};
 
     if (variant === 'inverse') {
       progress.style = 'progress-white';
@@ -48,7 +48,7 @@ class Widget01 extends Component {
         <CardBody>
           <div className="h4 m-0">{header}</div>
           <div>{mainText}</div>
-          <Progress className={progress.style} color={progress.color} value={progress.value} />
+          <Progress className={progress.style} color={progress.color} value={progress.value}/>
           <small className="text-muted">{smallText}</small>
           <div>{children}</div>
         </CardBody>

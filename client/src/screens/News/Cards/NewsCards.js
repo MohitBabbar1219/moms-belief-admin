@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
-import {Badge, Card, CardBody, CardFooter, CardHeader, Col, Row, Collapse, Fade} from 'reactstrap';
-import {AppSwitch} from '@coreui/react'
+import {Row} from 'reactstrap';
 import axios from "axios";
 import Aux from './../../../hoc/Aux';
-import Testimonial from "../../../components/Testimonial";
-import TestimonialForm from "../../../components/TestimonialForm";
-import ButtonWithIcon from "../../../components/ButtonWithIcon";
 import NewsCard from "../../../components/NewsCard";
 import NewsForm from "../../../components/NewsForm";
 

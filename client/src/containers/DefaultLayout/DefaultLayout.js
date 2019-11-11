@@ -1,10 +1,11 @@
-import React, { Component, Suspense } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import React, {Component, Suspense} from 'react';
 import * as router from 'react-router-dom';
-import { Container } from 'reactstrap';
+import {Route, Switch} from 'react-router-dom';
+import {Container} from 'reactstrap';
 
 import {
   AppAside,
+  AppBreadcrumb2 as AppBreadcrumb,
   AppFooter,
   AppHeader,
   AppSidebar,
@@ -12,7 +13,6 @@ import {
   AppSidebarForm,
   AppSidebarHeader,
   AppSidebarMinimizer,
-  AppBreadcrumb2 as AppBreadcrumb,
   AppSidebarNav2 as AppSidebarNav,
 } from '@coreui/react';
 // sidebar nav config
@@ -37,19 +37,19 @@ class DefaultLayout extends Component {
     return (
       <div className="app">
         <AppHeader fixed>
-          <Suspense  fallback={this.loading()}>
-            <DefaultHeader onLogout={e=>this.signOut(e)}/>
+          <Suspense fallback={this.loading()}>
+            <DefaultHeader onLogout={e => this.signOut(e)}/>
           </Suspense>
         </AppHeader>
         <div className="app-body">
           <AppSidebar fixed display="lg">
-            <AppSidebarHeader />
-            <AppSidebarForm />
+            <AppSidebarHeader/>
+            <AppSidebarForm/>
             <Suspense>
-            <AppSidebarNav navConfig={navigation} {...this.props} router={router}/>
+              <AppSidebarNav navConfig={navigation} {...this.props} router={router}/>
             </Suspense>
-            <AppSidebarFooter />
-            <AppSidebarMinimizer />
+            <AppSidebarFooter/>
+            <AppSidebarMinimizer/>
           </AppSidebar>
           <main className="main">
             <AppBreadcrumb appRoutes={routes} router={router}/>
@@ -65,7 +65,7 @@ class DefaultLayout extends Component {
                         name={route.name}
                         render={props => (
                           <route.component {...props} />
-                        )} />
+                        )}/>
                     ) : (null);
                   })}
                 </Switch>
@@ -74,13 +74,13 @@ class DefaultLayout extends Component {
           </main>
           <AppAside fixed>
             <Suspense fallback={this.loading()}>
-              <DefaultAside />
+              <DefaultAside/>
             </Suspense>
           </AppAside>
         </div>
         <AppFooter>
           <Suspense fallback={this.loading()}>
-            <DefaultFooter />
+            <DefaultFooter/>
           </Suspense>
         </AppFooter>
       </div>

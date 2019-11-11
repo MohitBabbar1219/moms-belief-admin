@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import { Row, Col } from 'reactstrap'
-import { rgbToHex } from '@coreui/coreui/dist/js/coreui-utilities'
+import {Col, Row} from 'reactstrap'
+import {rgbToHex} from '@coreui/coreui/dist/js/coreui-utilities'
 
 class ThemeView extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class ThemeView extends Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const elem = ReactDOM.findDOMNode(this).parentNode.firstChild
     const color = window.getComputedStyle(elem).getPropertyValue('background-color')
     this.setState({
@@ -28,11 +28,11 @@ class ThemeView extends Component {
         <tbody>
         <tr>
           <td className="text-muted">HEX:</td>
-          <td className="font-weight-bold">{ rgbToHex(this.state.bgColor) }</td>
+          <td className="font-weight-bold">{rgbToHex(this.state.bgColor)}</td>
         </tr>
         <tr>
           <td className="text-muted">RGB:</td>
-          <td className="font-weight-bold">{ this.state.bgColor }</td>
+          <td className="font-weight-bold">{this.state.bgColor}</td>
         </tr>
         </tbody>
       </table>
@@ -47,7 +47,7 @@ class ThemeColor extends Component {
   render() {
 
     // const { className, children, ...attributes } = this.props
-    const { className, children } = this.props
+    const {className, children} = this.props
 
     const classes = classNames(className, 'theme-color w-75 rounded mb-3')
 

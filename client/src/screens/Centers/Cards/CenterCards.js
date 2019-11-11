@@ -1,21 +1,7 @@
-import React, { Component } from 'react';
-import { Badge, Card, CardBody, CardFooter, CardHeader, Col, Row, Collapse, Fade } from 'reactstrap';
-import { AppSwitch } from '@coreui/react'
+import React, {Component} from 'react';
+import {Row} from 'reactstrap';
 import axios from "axios";
 import Aux from './../../../hoc/Aux';
-import Testimonial from "../../../components/Testimonial";
-import TestimonialForm from "../../../components/TestimonialForm";
-import ButtonWithIcon from "../../../components/ButtonWithIcon";
-import ClinicalConsultantForm from "../../../components/ClinicalConsultantForm";
-import ClinicalConsultantCard from "../../../components/ClinicalConsultantCard";
-import ClinicalExpertCard from "../../../components/ClinicalExpertCard";
-import ClinicalExpertForm from "../../../components/ClinicalExpertForm";
-import ManagementTeamMemberForm from "../../../components/ManagementTeamMemberForm";
-import ManagementTeamMemberCard from "../../../components/ManagementTeamMemberCard";
-import HomeBasedSubscriptionForm from "../../../components/HomeBasedSubscriptionForm";
-import HomeBasedSubscriptionCard from "../../../components/HomeBasedSubscriptionCard";
-import SchoolCard from "../../../components/SchoolCard";
-import SchoolForm from "../../../components/SchoolForm";
 import CenterCard from "../../../components/CenterCard";
 import {withRouter} from "react-router-dom";
 
@@ -37,11 +23,13 @@ class CenterCards extends Component {
   }
 
   toggle() {
-    this.setState({ collapse: !this.state.collapse });
+    this.setState({collapse: !this.state.collapse});
   }
 
   toggleFade() {
-    this.setState((prevState) => { return { fadeIn: !prevState }});
+    this.setState((prevState) => {
+      return {fadeIn: !prevState}
+    });
   }
 
   cancelEditing = () => {
@@ -213,7 +201,8 @@ class CenterCards extends Component {
     let testimonialSection = <Aux>
       {
         this.state.centers.map((center, index) => {
-          return <CenterCard key={center._id} edit={() => this.edit(center._id)} delete={() => this.delete(center._id)} center={center} />
+          return <CenterCard key={center._id} edit={() => this.edit(center._id)} delete={() => this.delete(center._id)}
+                             center={center}/>
         })
       }
     </Aux>;

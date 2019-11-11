@@ -13,6 +13,6 @@ jest.mock('react-chartjs-2', () => ({
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Charts />, div);
+  ReactDOM.render(<Charts/>, div);
   ReactDOM.unmountComponentAtNode(div);
 });

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Bar, Doughnut, Line, Pie, Polar, Radar } from 'react-chartjs-2';
-import { Card, CardBody, CardColumns, CardHeader } from 'reactstrap';
-import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
+import React, {Component} from 'react';
+import {Bar, Doughnut, Line, Pie, Polar, Radar} from 'react-chartjs-2';
+import {Card, CardBody, CardColumns, CardHeader} from 'reactstrap';
+import {CustomTooltips} from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 
 const line = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -167,7 +167,7 @@ class Charts extends Component {
             </CardHeader>
             <CardBody>
               <div className="chart-wrapper">
-                <Line data={line} options={options} />
+                <Line data={line} options={options}/>
               </div>
             </CardBody>
           </Card>
@@ -182,7 +182,7 @@ class Charts extends Component {
             </CardHeader>
             <CardBody>
               <div className="chart-wrapper">
-                <Bar data={bar} options={options} />
+                <Bar data={bar} options={options}/>
               </div>
             </CardBody>
           </Card>
@@ -197,7 +197,7 @@ class Charts extends Component {
             </CardHeader>
             <CardBody>
               <div className="chart-wrapper">
-                <Doughnut data={doughnut} />
+                <Doughnut data={doughnut}/>
               </div>
             </CardBody>
           </Card>
@@ -212,7 +212,7 @@ class Charts extends Component {
             </CardHeader>
             <CardBody>
               <div className="chart-wrapper">
-                <Radar data={radar} />
+                <Radar data={radar}/>
               </div>
             </CardBody>
           </Card>
@@ -227,7 +227,7 @@ class Charts extends Component {
             </CardHeader>
             <CardBody>
               <div className="chart-wrapper">
-                <Pie data={pie} />
+                <Pie data={pie}/>
               </div>
             </CardBody>
           </Card>

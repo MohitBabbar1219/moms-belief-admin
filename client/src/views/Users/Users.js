@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Badge, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import {Badge, Card, CardBody, CardHeader, Col, Row, Table} from 'reactstrap';
 
 import usersData from './UsersData'
 
@@ -44,18 +44,18 @@ class Users extends Component {
               <CardBody>
                 <Table responsive hover>
                   <thead>
-                    <tr>
-                      <th scope="col">id</th>
-                      <th scope="col">name</th>
-                      <th scope="col">registered</th>
-                      <th scope="col">role</th>
-                      <th scope="col">status</th>
-                    </tr>
+                  <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">name</th>
+                    <th scope="col">registered</th>
+                    <th scope="col">role</th>
+                    <th scope="col">status</th>
+                  </tr>
                   </thead>
                   <tbody>
-                    {userList.map((user, index) =>
-                      <UserRow key={index} user={user}/>
-                    )}
+                  {userList.map((user, index) =>
+                    <UserRow key={index} user={user}/>
+                  )}
                   </tbody>
                 </Table>
               </CardBody>

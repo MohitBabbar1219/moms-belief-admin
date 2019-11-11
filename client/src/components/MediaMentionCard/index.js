@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Card, CardBody, CardFooter, CardHeader, Col} from "reactstrap";
+import {Card, CardBody, CardHeader, Col} from "reactstrap";
 
 const MediaMentionCard = (props) => {
   const mediaMention = props.mediaMention;

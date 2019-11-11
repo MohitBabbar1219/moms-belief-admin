@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Button, Card, CardBody, CardHeader, Col, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap';
+import React, {Component} from 'react';
+import {Button, Card, CardBody, CardHeader, Col, Modal, ModalBody, ModalFooter, ModalHeader, Row} from 'reactstrap';
 
 class Modals extends Component {
 
@@ -134,7 +134,7 @@ class Modals extends Component {
                   </ModalFooter>
                 </Modal>
 
-                <hr />
+                <hr/>
 
                 <Button color="primary" onClick={this.togglePrimary} className="mr-1">Primary modal</Button>
                 <Modal isOpen={this.state.primary} toggle={this.togglePrimary}

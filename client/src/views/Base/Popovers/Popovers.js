@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Button, Card, CardBody, CardHeader, Popover, PopoverBody, PopoverHeader } from 'reactstrap';
+import React, {Component} from 'react';
+import {Button, Card, CardBody, CardHeader, Popover, PopoverBody, PopoverHeader} from 'reactstrap';
 
 class PopoverItem extends Component {
   constructor(props) {
@@ -23,7 +23,8 @@ class PopoverItem extends Component {
         <Button className="mr-1" color="secondary" id={'Popover-' + this.props.id} onClick={this.toggle}>
           {this.props.item.text}
         </Button>
-        <Popover placement={this.props.item.placement} isOpen={this.state.popoverOpen} target={'Popover-' + this.props.id} toggle={this.toggle} trigger="legacy" delay={0}>
+        <Popover placement={this.props.item.placement} isOpen={this.state.popoverOpen}
+                 target={'Popover-' + this.props.id} toggle={this.toggle} trigger="legacy" delay={0}>
           <PopoverHeader>Popover Title</PopoverHeader>
           <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
         </Popover>
@@ -74,7 +75,8 @@ class Popovers extends Component {
           <CardHeader>
             <i className="fa fa-align-justify"></i><strong>Popovers</strong>
             <div className="card-header-actions">
-              <a href="https://reactstrap.github.io/components/popovers/" rel="noreferrer noopener" target="_blank" className="card-header-action">
+              <a href="https://reactstrap.github.io/components/popovers/" rel="noreferrer noopener" target="_blank"
+                 className="card-header-action">
                 <small className="text-muted">docs</small>
               </a>
             </div>
@@ -85,7 +87,8 @@ class Popovers extends Component {
             </Button>
             <Popover placement="bottom" isOpen={this.state.popoverOpen} target="Popover1" toggle={this.toggle}>
               <PopoverHeader>Popover Title</PopoverHeader>
-              <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+              <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia
+                quam venenatis vestibulum.</PopoverBody>
             </Popover>
           </CardBody>
         </Card>
@@ -96,7 +99,7 @@ class Popovers extends Component {
           </CardHeader>
           <CardBody>
             {this.state.popovers.map((popover, i) => {
-              return <PopoverItem key={i} item={popover} id={i} />;
+              return <PopoverItem key={i} item={popover} id={i}/>;
             })}
           </CardBody>
         </Card>

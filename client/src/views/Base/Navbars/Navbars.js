@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   Card,
   CardBody,
@@ -48,7 +48,8 @@ class Navbars extends Component {
           <CardHeader>
             <i className="fa fa-align-justify"></i><strong>Navbar</strong>
             <div className="card-header-actions">
-              <a href="https://reactstrap.github.io/components/navbar/" rel="noreferrer noopener" target="_blank" className="card-header-action">
+              <a href="https://reactstrap.github.io/components/navbar/" rel="noreferrer noopener" target="_blank"
+                 className="card-header-action">
                 <small className="text-muted">docs</small>
               </a>
             </div>
@@ -56,7 +57,7 @@ class Navbars extends Component {
           <CardBody>
             <Navbar color="info" light expand="md">
               <NavbarBrand href="/">Bootstrap</NavbarBrand>
-              <NavbarToggler onClick={this.toggle} />
+              <NavbarToggler onClick={this.toggle}/>
               <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="ml-auto" navbar>
                   <NavItem>
@@ -78,7 +79,7 @@ class Navbars extends Component {
                       <DropdownItem>
                         Option 2
                       </DropdownItem>
-                      <DropdownItem divider />
+                      <DropdownItem divider/>
                       <DropdownItem>
                         Reset
                       </DropdownItem>
@@ -96,7 +97,7 @@ class Navbars extends Component {
           <CardBody>
             <Navbar color="success" light>
               <NavbarBrand href="/" className="mr-auto">Bootstrap</NavbarBrand>
-              <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+              <NavbarToggler onClick={this.toggleNavbar} className="mr-2"/>
               <Collapse isOpen={!this.state.collapsed} navbar>
                 <Nav navbar>
                   <NavItem>

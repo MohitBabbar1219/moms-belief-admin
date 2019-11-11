@@ -4,6 +4,6 @@ import Paginations from './Pagnations';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Paginations />, div);
+  ReactDOM.render(<Paginations/>, div);
   ReactDOM.unmountComponentAtNode(div);
 });

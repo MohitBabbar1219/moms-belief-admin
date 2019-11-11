@@ -1,11 +1,7 @@
-import React, { Component } from 'react';
-import { Badge, Card, CardBody, CardFooter, CardHeader, Col, Row, Collapse, Fade } from 'reactstrap';
-import { AppSwitch } from '@coreui/react'
+import React, {Component} from 'react';
+import {Row} from 'reactstrap';
 import axios from "axios";
 import Aux from './../../../hoc/Aux';
-import Testimonial from "../../../components/Testimonial";
-import TestimonialForm from "../../../components/TestimonialForm";
-import ButtonWithIcon from "../../../components/ButtonWithIcon";
 import SponsorCard from "../../../components/SponsorsCard";
 import SponsorForm from "../../../components/SponsorForm";
 
@@ -27,11 +23,13 @@ class SponsorCards extends Component {
   }
 
   toggle() {
-    this.setState({ collapse: !this.state.collapse });
+    this.setState({collapse: !this.state.collapse});
   }
 
   toggleFade() {
-    this.setState((prevState) => { return { fadeIn: !prevState }});
+    this.setState((prevState) => {
+      return {fadeIn: !prevState}
+    });
   }
 
   edit = (type, index) => {
@@ -195,10 +193,10 @@ class SponsorCards extends Component {
       {this.state.sponsors.map((sponsor, index) => {
         return this.state.editableElement === sponsor ?
           <SponsorForm addImage={(evt) => this.addImage(evt, "sponsors", index)}
-                           cancelEditing={this.cancelEditing}
-                           onInputChange={this.onInputChange}
-                           updateElement={this.updateElement}
-                           sponsor={this.state.elementBeingEdited}/> :
+                       cancelEditing={this.cancelEditing}
+                       onInputChange={this.onInputChange}
+                       updateElement={this.updateElement}
+                       sponsor={this.state.elementBeingEdited}/> :
           <SponsorCard edit={() => this.edit("sponsors", index)}
                        key={sponsor._id}
                        delete={() => this.delete("sponsors", sponsor._id)}

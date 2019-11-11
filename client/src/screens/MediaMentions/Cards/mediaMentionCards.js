@@ -1,11 +1,7 @@
-import React, { Component } from 'react';
-import { Badge, Card, CardBody, CardFooter, CardHeader, Col, Row, Collapse, Fade } from 'reactstrap';
-import { AppSwitch } from '@coreui/react'
+import React, {Component} from 'react';
+import {Row} from 'reactstrap';
 import axios from "axios";
 import Aux from './../../../hoc/Aux';
-import Testimonial from "../../../components/Testimonial";
-import TestimonialForm from "../../../components/TestimonialForm";
-import ButtonWithIcon from "../../../components/ButtonWithIcon";
 import MediaMentionCard from "../../../components/MediaMentionCard";
 import MediaMentionForm from "../../../components/MediaMentionForm";
 
@@ -27,11 +23,13 @@ class MediaMentionCards extends Component {
   }
 
   toggle() {
-    this.setState({ collapse: !this.state.collapse });
+    this.setState({collapse: !this.state.collapse});
   }
 
   toggleFade() {
-    this.setState((prevState) => { return { fadeIn: !prevState }});
+    this.setState((prevState) => {
+      return {fadeIn: !prevState}
+    });
   }
 
   edit = (type, index) => {
@@ -195,14 +193,14 @@ class MediaMentionCards extends Component {
       {this.state.mediaMentions.map((mediaMention, index) => {
         return this.state.editableElement === mediaMention ?
           <MediaMentionForm addImage={(evt) => this.addImage(evt, "mediaMentions", index)}
-                           cancelEditing={this.cancelEditing}
-                           onInputChange={this.onInputChange}
-                           updateElement={this.updateElement}
-                           mediaMention={this.state.elementBeingEdited}/> :
+                            cancelEditing={this.cancelEditing}
+                            onInputChange={this.onInputChange}
+                            updateElement={this.updateElement}
+                            mediaMention={this.state.elementBeingEdited}/> :
           <MediaMentionCard edit={() => this.edit("mediaMentions", index)}
-                       key={mediaMention._id}
-                       delete={() => this.delete("mediaMentions", mediaMention._id)}
-                       mediaMention={mediaMention}/>
+                            key={mediaMention._id}
+                            delete={() => this.delete("mediaMentions", mediaMention._id)}
+                            mediaMention={mediaMention}/>
       })}
     </Aux>;
     return (

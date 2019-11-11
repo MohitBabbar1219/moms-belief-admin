@@ -4,6 +4,6 @@ import CoreUIIcons from './CoreUIIcons';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<CoreUIIcons />, div);
+  ReactDOM.render(<CoreUIIcons/>, div);
   ReactDOM.unmountComponentAtNode(div);
 });

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
+import React, {Component} from 'react';
+import {Button, Card, CardBody, CardHeader, Col, Row} from 'reactstrap';
 
 class Buttons extends Component {
   render() {
@@ -528,7 +528,8 @@ class Buttons extends Component {
             <strong>Sizes</strong>
           </CardHeader>
           <CardBody>
-            <p>Fancy larger or smaller buttons? Add <code>size="lg"</code> or <code>size="sm"</code> for additional sizes.</p>
+            <p>Fancy larger or smaller buttons? Add <code>size="lg"</code> or <code>size="sm"</code> for additional
+              sizes.</p>
             <Row className="align-items-center">
               <Col col="2" xl className="mb-3 mb-xl-0">
                 Small
@@ -557,7 +558,7 @@ class Buttons extends Component {
                 <Button color="primary">Standard Button</Button>
               </Col>
               <Col col="2" className="mb-3 mb-xl-0 text-center">
-                <Button outline color="secondary" >Outline Button</Button>
+                <Button outline color="secondary">Outline Button</Button>
               </Col>
               <Col col="2" className="mb-3 mb-xl-0 text-center">
                 <Button color="ghost-success">Ghost Button</Button>
@@ -576,7 +577,7 @@ class Buttons extends Component {
               <Col col="2" className="mb-3 mb-xl-0 text-center">
                 <Button color="primary" size="lg">Standard Button</Button>
               </Col>
-              <Col col="2"className="mb-3 mb-xl-0 text-center">
+              <Col col="2" className="mb-3 mb-xl-0 text-center">
                 <Button outline color="secondary" size="lg">Outline Button</Button>
               </Col>
               <Col col="2" className="mb-3 mb-xl-0 text-center">

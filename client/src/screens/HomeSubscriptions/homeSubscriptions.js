@@ -1,9 +1,10 @@
-import React, { Component, Suspense } from 'react';
+import React, {Component, Suspense} from 'react';
 import * as router from 'react-router-dom';
-import { Container } from 'reactstrap';
+import {Container} from 'reactstrap';
 
 import {
   AppAside,
+  AppBreadcrumb2 as AppBreadcrumb,
   AppFooter,
   AppHeader,
   AppSidebar,
@@ -11,7 +12,6 @@ import {
   AppSidebarForm,
   AppSidebarHeader,
   AppSidebarMinimizer,
-  AppBreadcrumb2 as AppBreadcrumb,
   AppSidebarNav2 as AppSidebarNav,
 } from '@coreui/react';
 // sidebar nav config
@@ -37,19 +37,19 @@ class HomeSubscriptions extends Component {
     return (
       <div className="app">
         <AppHeader fixed>
-          <Suspense  fallback={this.loading()}>
-            <DefaultHeader onLogout={e=>this.signOut(e)}/>
+          <Suspense fallback={this.loading()}>
+            <DefaultHeader onLogout={e => this.signOut(e)}/>
           </Suspense>
         </AppHeader>
         <div className="app-body">
           <AppSidebar fixed display="lg">
-            <AppSidebarHeader />
-            <AppSidebarForm />
+            <AppSidebarHeader/>
+            <AppSidebarForm/>
             <Suspense>
               <AppSidebarNav navConfig={navigation} {...this.props} router={router}/>
             </Suspense>
-            <AppSidebarFooter />
-            <AppSidebarMinimizer />
+            <AppSidebarFooter/>
+            <AppSidebarMinimizer/>
           </AppSidebar>
           <main className="main">
             <AppBreadcrumb appRoutes={routes} router={router}/>
@@ -63,13 +63,13 @@ class HomeSubscriptions extends Component {
           </main>
           <AppAside fixed>
             <Suspense fallback={this.loading()}>
-              <DefaultAside />
+              <DefaultAside/>
             </Suspense>
           </AppAside>
         </div>
         <AppFooter>
           <Suspense fallback={this.loading()}>
-            <DefaultFooter />
+            <DefaultFooter/>
           </Suspense>
         </AppFooter>
       </div>

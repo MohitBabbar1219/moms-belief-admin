@@ -4,6 +4,6 @@ import Carousels from './Carousels';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Carousels />, div);
+  ReactDOM.render(<Carousels/>, div);
   ReactDOM.unmountComponentAtNode(div);
 });

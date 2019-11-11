@@ -1,9 +1,10 @@
-import React, { Component, Suspense } from 'react';
+import React, {Component, Suspense} from 'react';
 import * as router from 'react-router-dom';
-import { Container } from 'reactstrap';
+import {Container} from 'reactstrap';
 
 import {
   AppAside,
+  AppBreadcrumb2 as AppBreadcrumb,
   AppFooter,
   AppHeader,
   AppSidebar,
@@ -11,7 +12,6 @@ import {
   AppSidebarForm,
   AppSidebarHeader,
   AppSidebarMinimizer,
-  AppBreadcrumb2 as AppBreadcrumb,
   AppSidebarNav2 as AppSidebarNav,
 } from '@coreui/react';
 // sidebar nav config
@@ -21,11 +21,8 @@ import routes from '../../routes';
 import DefaultHeader from "../../containers/DefaultLayout/DefaultHeader";
 import DefaultAside from "../../containers/DefaultLayout/DefaultAside";
 import DefaultFooter from "../../containers/DefaultLayout/DefaultFooter";
-import {Switch} from "react-bootstrap";
-import {Route} from "react-router-dom";
-import Login from "../../views/Pages/Login";
-import Register from "../../views/Pages/Register";
 import Dashboard from "./Dashboard";
+import {withRouter} from "react-router-dom";
 
 class Index extends Component {
 
@@ -37,43 +34,49 @@ class Index extends Component {
     this.props.history.push('/login')
   }
 
+  componentDidMount() {
+    if (this.props.match.path === '/dashboard') {
+      this.props.history.replace('/');
+    }
+  }
+
   render() {
     return (
       <div className="app">
         <AppHeader fixed>
-          <Suspense  fallback={this.loading()}>
-            <DefaultHeader onLogout={e=>this.signOut(e)}/>
+          <Suspense fallback={this.loading()}>
+            <DefaultHeader onLogout={e => this.signOut(e)}/>
           </Suspense>
         </AppHeader>
         <div className="app-body">
           <AppSidebar fixed display="lg">
-            <AppSidebarHeader />
-            <AppSidebarForm />
+            <AppSidebarHeader/>
+            <AppSidebarForm/>
             <Suspense>
               <AppSidebarNav navConfig={navigation} {...this.props} router={router}/>
             </Suspense>
-            <AppSidebarFooter />
-            <AppSidebarMinimizer />
+            <AppSidebarFooter/>
+            <AppSidebarMinimizer/>
           </AppSidebar>
           <main className="main">
             <AppBreadcrumb appRoutes={routes} router={router}/>
             <Container fluid>
               <Suspense fallback={this.loading()}>
                 <div className="py-5">
-                  <Dashboard />
+                  <Dashboard/>
                 </div>
               </Suspense>
             </Container>
           </main>
           <AppAside fixed>
             <Suspense fallback={this.loading()}>
-              <DefaultAside />
+              <DefaultAside/>
             </Suspense>
           </AppAside>
         </div>
         <AppFooter>
           <Suspense fallback={this.loading()}>
-            <DefaultFooter />
+            <DefaultFooter/>
           </Suspense>
         </AppFooter>
       </div>
@@ -81,4 +84,4 @@ class Index extends Component {
   }
 }
 
-export default Index;
+export default withRouter(Index);

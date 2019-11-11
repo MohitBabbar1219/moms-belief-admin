@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { mapToCssModules } from 'reactstrap/lib/utils';
+import {mapToCssModules} from 'reactstrap/lib/utils';
 
 const propTypes = {
   children: PropTypes.node,
@@ -11,14 +11,14 @@ const propTypes = {
 };
 
 const defaultProps = {
-  dataBox: () => ({ variant: 'facebook', friends: '-', feeds: '-' }),
+  dataBox: () => ({variant: 'facebook', friends: '-', feeds: '-'}),
 };
 
 class Widget03 extends Component {
   render() {
 
     // eslint-disable-next-line
-    const { children, className, cssModule, dataBox, ...attributes } = this.props;
+    const {children, className, cssModule, dataBox, ...attributes} = this.props;
 
     // demo purposes only
     const data = dataBox();
