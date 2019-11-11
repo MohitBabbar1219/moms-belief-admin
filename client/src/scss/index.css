@@ -1,3 +1,22 @@
 .w-40 {
   width: 40%;
 }
+
+.fs-1-2 {
+  font-size: 1.2em;
+  color: white;
+}
+
+.fs-1-2:hover {
+  color: #e4e4e4;
+}
+
+.links-boom {
+  list-style: none;
+}
+
+.links-boom li {
+  margin-top: 15px;
+  width: 100%;
+  border-bottom: 1px solid white;
+}

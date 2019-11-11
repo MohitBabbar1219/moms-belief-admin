@@ -206,7 +206,7 @@ class MediaMentionCards extends Component {
     return (
       <div className="animated fadeIn">
         <button className="btn btn-primary m-4" onClick={() => this.toggleNew("mediaMentions")}>Add new
-          testimonial
+          media mention
         </button>
         <Row>
           {testimonialSection}

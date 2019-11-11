@@ -88,8 +88,7 @@ class Login extends Component {
                             <i className="icon-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="text" name="email" placeholder="Email" value={this.state.email}
-                               onChange={this.onInputChange} autoComplete="username"/>
+                        <Input type="text" name="email" placeholder="Email" value={this.state.email} onChange={this.onInputChange} autoComplete="username"/>
                       </InputGroup>
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">

@@ -2,6 +2,7 @@ import React, {Component, lazy} from 'react';
 import {Card, CardBody, Col, Row,} from 'reactstrap';
 import {CustomTooltips} from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 import {getStyle} from '@coreui/coreui/dist/js/coreui-utilities'
+import {Link} from "react-router-dom";
 
 const Widget03 = lazy(() => import('../../views/Widgets/Widget03'));
 
@@ -287,7 +288,13 @@ class Dashboard extends Component {
               <CardBody className="pb-0">
                 <h2>Home</h2>
               </CardBody>
-              <div className="chart-wrapper mx-3" style={{height: '70px'}}>
+              <div className="chart-wrapper mx-3" style={{height: '200px'}}>
+                <ul className="links-boom">
+                  <li><Link className="text-decoration-none fs-1-2" to={'/home/testimonials'}>Testimonails</Link></li>
+                  <li><Link className="text-decoration-none fs-1-2" to={'/home/news'}>News</Link></li>
+                  <li><Link className="text-decoration-none fs-1-2" to={'/home/sponsors'}>Sponsors</Link></li>
+                  <li><Link className="text-decoration-none fs-1-2" to={'/home/media-mentions'}>Media Mentions</Link></li>
+                </ul>
               </div>
             </Card>
           </Col>
@@ -297,7 +304,13 @@ class Dashboard extends Component {
               <CardBody className="pb-0">
                 <h2>About Us</h2>
               </CardBody>
-              <div className="chart-wrapper" style={{height: '70px'}}>
+              <div className="chart-wrapper" style={{height: '200px'}}>
+                <ul className="links-boom">
+                  <li><Link className="text-decoration-none fs-1-2" to={'/about-us/advisory-board-members'}>Advisory Board Members</Link></li>
+                  <li><Link className="text-decoration-none fs-1-2" to={'/about-us/clinical-consultants'}>Clinical Consultants</Link></li>
+                  <li><Link className="text-decoration-none fs-1-2" to={'/about-us/clinical-experts'}>Clinical Experts</Link></li>
+                  <li><Link className="text-decoration-none fs-1-2" to={'/about-us/management-team-members'}>Management Team Members</Link></li>
+                </ul>
               </div>
             </Card>
           </Col>
@@ -307,7 +320,11 @@ class Dashboard extends Component {
               <CardBody className="pb-0">
                 <h2>Home Program</h2>
               </CardBody>
-              <div className="chart-wrapper mx-3" style={{height: '70px'}}>
+              <div className="chart-wrapper mx-3" style={{height: '200px'}}>
+                <ul className="links-boom">
+                  <li><Link className="text-decoration-none fs-1-2" to={'/home-based-program/home-based-subscriptions'}>Home Based Subscription</Link></li>
+                  <li><Link className="text-decoration-none fs-1-2" to={'/home-based-program/program-assistance'}>Programming Assistances</Link></li>
+                </ul>
               </div>
             </Card>
           </Col>
@@ -317,7 +334,11 @@ class Dashboard extends Component {
               <CardBody className="pb-0">
                 <h2>Schools</h2>
               </CardBody>
-              <div className="chart-wrapper mx-3" style={{height: '70px'}}>
+              <div className="chart-wrapper mx-3" style={{height: '200px'}}>
+                <ul className="links-boom">
+                  <li><Link className="text-decoration-none fs-1-2" to={'/schools/schools'}>Schools</Link></li>
+                  <li><Link className="text-decoration-none fs-1-2" to={'/schools/center-locations'}>Center Locations</Link></li>
+                </ul>
               </div>
             </Card>
           </Col>
@@ -327,7 +348,11 @@ class Dashboard extends Component {
               <CardBody className="pb-0">
                 <h2>Centers</h2>
               </CardBody>
-              <div className="chart-wrapper mx-3" style={{height: '70px'}}>
+              <div className="chart-wrapper mx-3" style={{height: '200px'}}>
+                <ul className="links-boom">
+                  <li><Link className="text-decoration-none fs-1-2" to={'/centers/new'}>New Center</Link></li>
+                  <li><Link className="text-decoration-none fs-1-2" to={'/centers'}>All Centers</Link></li>
+                </ul>
               </div>
             </Card>
           </Col>
