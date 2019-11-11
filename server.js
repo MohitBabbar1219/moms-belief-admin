@@ -43,6 +43,13 @@ app.use('/api/schools', school);
 const center = require('./routes/center');
 app.use('/api/centers', center);
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+
 const db = require('./config/keys').mongoURI;
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => console.log('successfully connected to database...'))
