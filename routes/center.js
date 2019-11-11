@@ -36,10 +36,6 @@ router.post('/', upload.array('images', 4), async (req, res) => {
 router.get('/', async (req, res) => {
   const subscription = await Center.find({});
 
-  if (subscription.length === 0) {
-    return res.status(404).json({message: "not found"});
-  }
-
   res.status(200).json({
     message: `${subscription.length} found`,
     data: subscription

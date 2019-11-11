@@ -1,0 +1,233 @@
+import React, { Component } from 'react';
+import { Badge, Card, CardBody, CardFooter, CardHeader, Col, Row, Collapse, Fade } from 'reactstrap';
+import { AppSwitch } from '@coreui/react'
+import axios from "axios";
+import Aux from './../../../hoc/Aux';
+import Testimonial from "../../../components/Testimonial";
+import TestimonialForm from "../../../components/TestimonialForm";
+import ButtonWithIcon from "../../../components/ButtonWithIcon";
+import ClinicalConsultantForm from "../../../components/ClinicalConsultantForm";
+import ClinicalConsultantCard from "../../../components/ClinicalConsultantCard";
+import ClinicalExpertCard from "../../../components/ClinicalExpertCard";
+import ClinicalExpertForm from "../../../components/ClinicalExpertForm";
+import ManagementTeamMemberForm from "../../../components/ManagementTeamMemberForm";
+import ManagementTeamMemberCard from "../../../components/ManagementTeamMemberCard";
+import HomeBasedSubscriptionForm from "../../../components/HomeBasedSubscriptionForm";
+import HomeBasedSubscriptionCard from "../../../components/HomeBasedSubscriptionCard";
+import SchoolCard from "../../../components/SchoolCard";
+import SchoolForm from "../../../components/SchoolForm";
+import CenterCard from "../../../components/CenterCard";
+import {withRouter} from "react-router-dom";
+
+class CenterCards extends Component {
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.toggleFade = this.toggleFade.bind(this);
+    this.state = {
+      centers: [],
+      collapse: true,
+      fadeIn: true,
+      timeout: 300,
+      editableElement: null,
+      elementBeingEdited: null,
+      uploadedImage: null,
+    };
+  }
+
+  toggle() {
+    this.setState({ collapse: !this.state.collapse });
+  }
+
+  toggleFade() {
+    this.setState((prevState) => { return { fadeIn: !prevState }});
+  }
+
+  cancelEditing = () => {
+    if (!this.state.elementBeingEdited._id) {
+      const listOfElements = this.state[this.state.elementBeingEdited.type].filter((element, index) => index !== this.state.elementBeingEdited.index);
+      this.setState({[this.state.elementBeingEdited.type]: listOfElements});
+    }
+    this.setState({editableElement: null});
+    this.setState({elementBeingEdited: null});
+    this.setState({uploadedImage: null});
+  };
+
+  componentDidMount() {
+    this.updateHomeElements();
+  }
+
+  updateHomeElements = () => {
+    axios.get('/api/centers').then(advisoryBoardMembers => {
+      console.log(advisoryBoardMembers.data);
+      this.setState({centers: advisoryBoardMembers.data.data});
+    });
+  };
+
+  addImage = (evt, type, index) => {
+    console.log(evt.target.files, "Image addedd");
+    setTimeout(() => console.log(this.state), 2000);
+    this.setState({uploadedImage: {image: evt.target.files[0], type: type, index: index}});
+  };
+
+  onInputChange = (evt) => {
+    const elementBeingEdited = {...this.state.elementBeingEdited};
+    elementBeingEdited[evt.target.name] = evt.target.value;
+    this.setState({elementBeingEdited: elementBeingEdited});
+  };
+
+  updateElement = (e = null) => {
+    if (this.state.elementBeingEdited._id) {
+      return this.putData(e);
+    }
+    this.postData(e)
+  };
+
+  edit = (id) => {
+    this.props.history.push(`/centers/${id}`);
+  };
+
+  addNewCenter = () => {
+    this.props.history.push('/centers/new');
+  };
+
+  postData = (e = null) => {
+    if (e !== null) {
+      e.preventDefault();
+    }
+    const formData = new FormData();
+    if (Object.keys(this.state.elementBeingEdited).includes('image') && (!this.state.uploadedImage || this.state.uploadedImage.type !== this.state.elementBeingEdited.type || this.state.uploadedImage.index !== this.state.elementBeingEdited.index)) {
+      return alert("Image is required");
+    }
+    if (!!this.state.uploadedImage && this.state.uploadedImage.type === this.state.elementBeingEdited.type && this.state.uploadedImage.index === this.state.elementBeingEdited.index) {
+      formData.append('image', this.state.uploadedImage.image);
+    }
+    console.log(Object.keys(this.state.elementBeingEdited));
+    Object.keys(this.state.elementBeingEdited).forEach(key => formData.append(key, this.state.elementBeingEdited[key]));
+    console.log(JSON.stringify(this.state.elementBeingEdited, null, 2));
+    const contentType = Object.keys(this.state.elementBeingEdited).includes('image') ? 'multipart/form-data' : 'application/json';
+    const reqBody = Object.keys(this.state.elementBeingEdited).includes('image') ? formData : this.state.elementBeingEdited;
+    const config = {
+      headers: {
+        'content-type': contentType,
+        'Authorization': localStorage.getItem('authToken')
+      }
+    };
+    axios.post(`/api/schools/${this.state.elementBeingEdited.type}`, reqBody, config)
+      .then((response) => {
+        console.log(response.data.message, "post")
+        if (response.data.message !== "successful") {
+          return;
+        }
+        this.props.history.push('/centers');
+      }).catch((error) => {
+    });
+  };
+
+  putData = (e = null) => {
+    if (e !== null) {
+      e.preventDefault();
+    }
+    const formData = new FormData();
+    if (!!this.state.uploadedImage && this.state.uploadedImage.type === this.state.elementBeingEdited.type && this.state.uploadedImage.index === this.state.elementBeingEdited.index) {
+      formData.append('image', this.state.uploadedImage.image);
+    }
+    Object.keys(this.state.elementBeingEdited).forEach(key => formData.append(key, this.state.elementBeingEdited[key]));
+    console.log(formData);
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data',
+        'Authorization': localStorage.getItem('authToken')
+      }
+    };
+    axios.put(`/api/schools/${this.state.elementBeingEdited.type}/${this.state[this.state.elementBeingEdited.type][this.state.elementBeingEdited.index]._id}`, formData, config)
+      .then((response) => {
+        console.log(response.data.message, "put")
+        if (response.data.message !== "found") {
+          return;
+        }
+        this.props.history.push('/centers');
+      }).catch((error) => {
+    });
+  };
+
+  toggleNew = (type) => {
+    const newToggleMap = {
+      schools: {
+        image: '',
+        description: '',
+        link: '',
+        type: type,
+        index: 0
+      },
+      news: {
+        title: '',
+        link: '',
+        image: '',
+        date: '',
+        type: type,
+        index: 0
+      },
+      mediaMentions: {
+        text: '',
+        image: '',
+        type: type,
+        index: 0
+      },
+      sponsors: {
+        name: '',
+        image: '',
+        type: type,
+        index: 0
+      }
+    };
+    const newElement = newToggleMap[type];
+    this.setState({editableElement: newElement});
+    this.setState({elementBeingEdited: newElement});
+    let newList = this.state[type];
+    newList = [newElement, ...newList];
+    this.setState({[type]: newList});
+  };
+
+  delete = (id) => {
+    const config = {
+      headers: {
+        'content-type': 'application/form-data',
+        'Authorization': localStorage.getItem('authToken')
+      }
+    };
+
+    axios.delete(`/api/centers/${id}`, config)
+      .then((response) => {
+        console.log(response.data.message.includes("deleted"));
+        if (!response.data.message.includes("deleted")) {
+          return;
+        }
+        this.updateHomeElements();
+      }).catch((error) => {
+    });
+  };
+
+  render() {
+    let testimonialSection = <Aux>
+      {
+        this.state.centers.map((center, index) => {
+          return <CenterCard key={center._id} edit={() => this.edit(center._id)} delete={() => this.delete(center._id)} center={center} />
+        })
+      }
+    </Aux>;
+    return (
+      <div className="animated fadeIn">
+        <button className="btn btn-primary m-4" onClick={this.addNewCenter}>Add new
+          center
+        </button>
+        <Row>
+          {testimonialSection}
+        </Row>
+      </div>
+    );
+  }
+}
+
+export default withRouter(CenterCards);
